@@ -268,7 +268,7 @@ date.getTime()\>firstDayOfWeek.getTime().getTime() );
 
 >   参见是否为当天
 
-### 给定时间对象，初始化到该月初的1月1日0时0分0秒0毫秒
+### 给定时间对象，初始化到该月初的1日0时0分0秒0毫秒
 
 >   Calendar c = Calendar.*getInstance*();
 
