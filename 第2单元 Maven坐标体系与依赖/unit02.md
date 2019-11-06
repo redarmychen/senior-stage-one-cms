@@ -34,18 +34,37 @@
 
 坐标是maven 对jar 包的身份定义，所以每个maven 项目都需要定义本工程的坐标。如：
 
-| \<!—项目名称 \<!-- 公司名称或组织名称 --\>
 
-​	 \<groupId\>com.hrxb\</groupId\> 
 
-s<!-- 项目或模块名称 --\> \<artifactId\>*attendmaven*\</artifactId\>
+<!—项目名称 ->
 
- \<!-- 项目或模块版本 --\> \<version\>0.0.1-SNAPSHOT\</version\> \
+​    <!-- 公司名称或组织名称 -->
 
-<!-- 项目或模块的打包类型 war： web项目 jar :Java项目 *pom*:父工程设置为*pom* --\> \
+  <groupId>com.hrxb</groupId>
 
-<packaging\>war\</packaging\> |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  <!-- 项目或模块名称 -->
+
+  <artifactId>attendmaven</artifactId>
+
+  <!-- 项目或模块版本 -->
+
+  <version>0.0.1-SNAPSHOT</version>
+
+  <!-- 项目或模块的打包类型
+
+  war： web项目
+
+  jar :Java项目
+
+  pom:父工程设置为pom
+
+   -->
+
+  <packaging>war</packaging>
+
+
+
+
 
 
 2.3 依赖管理
@@ -55,8 +74,17 @@ s<!-- 项目或模块名称 --\> \<artifactId\>*attendmaven*\</artifactId\>
 
 -   在pom.xml通过输入坐标添加依赖， 如添加spring-webmvc
 
-| \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-webmvc\</artifactId\> \<version\>4.3.13.RELEASE\</version\> \</dependency\> |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+​          <dependency>
+
+  		<groupId>org.springframework</groupId>
+
+  		<artifactId>spring-webmvc</artifactId>
+
+  		<version>4.3.13.RELEASE</version>
+
+  	</dependency>
+
+
 
 
 -   添加依赖的另一种方式
