@@ -26,10 +26,10 @@
 【教学内容】
 ============
 
-课程导入
+11.1 课程导入
 --------
 
-### 为什么要测试
+### 11.1.1  为什么要测试
 
 在计算的整个历史中，软件和系统投入运行后，由于存在缺陷，随后导致故障或无法满足利害关系方的需要，这种现象很常见。但是，使用适当的测试技术可以减少这种有问题交付的频率，只要这些技术是在适当的测试技能、适当的测试级别和软件开发生命周期的适当时间点上应用的。每个人都会犯错误（Error、Mistake），而错误会导致在软件代码或者其他一些相关工作产品中引入缺陷（defect、fault或bug）。导致在一个工作产品中引入缺陷的错误可以触发另外一个导致相关工作产品中引入缺陷的错误。
 
@@ -49,7 +49,7 @@
 •
 验收测试时，一个目标可能是确认系统按照预期工作并满足要求。测试的另一个目的可能是向利益相关者提供在指定时间发布系统的风险信息。
 
-### 应用场景
+### 11.1.2 应用场景
 
 项目开发过程中
 
@@ -59,10 +59,10 @@
 
 项目后期维护
 
-Junit介绍
+11.2 Junit介绍
 ---------
 
-### 单元测试
+### 11.2.1 单元测试
 
 测试是检查应用程序是否是工作按照要求，并确保在开发者水平，单元测试进入功能性的处理。单元测试在每一个软件公司开发高品质的产品给他们的客户是十分必要的。两种方式来完成：
 
@@ -86,12 +86,14 @@ Junit介绍
 
 编程：测试人员可以编写复杂的测试，以带出隐藏的信息。
 
-### jUnit 是什么
+### 11.2.1 jUnit 是什么
 
 JUnit是一个Java编程语言编写的单元测试框架。
 重要的是在测试驱动开发中，并且是一个家族的统称为xUnit单元测试框架中的一个。
 
-### jUnit特点
+
+
+### 11.2.3  jUnit特点
 
 -   JUnit是用于编写和运行测试的开源框架。
 
@@ -111,10 +113,10 @@ JUnit是一个Java编程语言编写的单元测试框架。
 
 -   Junit显示测试进度的，如果测试是没有问题条形是绿色的，测试失败则会变成红色。
 
-Maven 集成 jUnit
+11.3 Maven 集成 jUnit
 ----------------
 
-### 引入依赖
+### 11.3.1 引入依赖
 
 >   \<dependency\>
 
@@ -126,7 +128,7 @@ Maven 集成 jUnit
 
 >   \</dependency\>
 
-### 入门案例
+### 11.3.2 入门案例
 
 编写如下代码并单击右键使用junit 运行。
 
@@ -152,51 +154,51 @@ Maven 集成 jUnit
 
 ![](media/3c4ad8a648ef60fff9d05c7848b1ff45.png)
 
-jUnit常用注解
+11.4 jUnit常用注解
 -------------
 
-### \@Test
+### 11.4.1  @Test
 
-\@Test
+@Test
 
 public void method()
 
 测试注释指示该公共无效方法它所附着可以作为一个测试用例。
 
-### \@Before 
+### 11.4.2 @Before 
 
-\@Before
+@Before
 
 public void method()
 
 Before注释表示，该方法必须在类中的每个测试之前执行，以便执行测试某些必要的先决条件。
 
-### \@BeforeClass 
+### 11.4.3 @BeforeClass 
 
-\@BeforeClass
+@BeforeClass
 
 public static void method()
 
 BeforeClass注释指出这是附着在静态方法必须执行一次并在类的所有测试之前。发生这种情况时一般是测试计算共享配置方法(如连接到数据库)。
 
-### \@After 
+### 11.4.4 @After 
 
-\@After
+@After
 
 public void method()
 
 After
 注释指示，该方法在执行每项测试后执行(如执行每一个测试后重置某些变量，删除临时变量等)
 
-### \@AfterClass 
+### 11.4.5 @AfterClass 
 
-\@AfterClass
+@AfterClass
 
 public static void method()
 
 当需要执行所有的测试在JUnit测试用例类后执行，AfterClass注解可以使用以清理建立方法，(从数据库如断开连接)。注意：附有此批注(类似于BeforeClass)的方法必须定义为静态。
 
-### \@Ignore 
+### 11.4.6 @Ignore 
 
 \@Ignore
 
@@ -204,7 +206,7 @@ public static void method()
 
 当想暂时禁用特定的测试执行可以使用忽略注释。每个被注解为\@Ignore的方法将不被执行。
 
- JUnit断言
+11.5 JUnit断言
 ----------
 
 void assertEquals([String message], expected value, actual value)
@@ -243,7 +245,7 @@ void assertArrayEquals([String message], expectedArray, resultArray)
 断言预期数组和结果数组相等。数组的类型可能是 int, long, short, char, byte or
 java.lang.Object.
 
-在命令行中运行JUnit测试
+11.6 在命令行中运行JUnit测试
 -----------------------
 
 public class AssertionsTest {
@@ -256,10 +258,10 @@ public class AssertionsTest {
 
 }
 
-jUnit与spring-test集成
+11.7 jUnit与spring-test集成
 ----------------------
 
-### 引入依赖
+### 11.7.1 引入依赖
 
 >   pom.xml 中引入依赖，如下所示：
 
@@ -273,7 +275,7 @@ jUnit与spring-test集成
 
 \</dependency\>
 
-### 使用注解
+### 11.7.2 使用注解
 
 在测试类前增加两个注解，分别是：
 

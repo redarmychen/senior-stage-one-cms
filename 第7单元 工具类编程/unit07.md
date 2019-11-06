@@ -32,26 +32,26 @@
 【教学内容】
 ============
 
-课程导入
+7.1 课程导入
 --------
 
 项目开发工具类演示
 
 开发工具类的用途
 
-准备工作
+7.2 准备工作
 --------
 
-### 创建Maven工程
+### 7.2.1 创建Maven工程
 
-### git版本管理
+### 7.2.2 git版本管理
 
-字符串工具类
+7.3 字符串工具类
 ------------
 
-### 创建字符串工具类
+### 7.3.1 创建字符串工具类
 
-### 判空
+### 7.3.2 判空
 
 判断源字符串是否有值，空引号也算没值；
 
@@ -59,13 +59,13 @@ null != src && src.length() \> 0;
 
 null != src && src.trim().length() \> 0;
 
-### 是否有值
+### 7.3.3 是否有值
 
 判断源字符串是否有值，空引号和空格也算没值
 
 参见上一条
 
-### 验证手机号码
+### 7.3.4  验证手机号码
 
 使用正则表达式。
 
@@ -80,7 +80,7 @@ boolean isMatch = m.matches();
 
 Return isMatch ;
 
-### 验证邮箱
+### 7.3.5  验证邮箱
 
 String regEx1 =
 "\^([a-z0-9A-Z]+[-\|\\\\.]?)+[a-z0-9A-Z]\@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-zA-Z]{2,}\$";
@@ -91,11 +91,11 @@ Matcher m = p.matcher(email);
 
 Return m;
 
-### 验证全为字母
+### 7.3.6 验证全为字母
 
 String regEx1 = “[a-zA-Z]?”;
 
-### 获取n位随机英文字符串
+### 7.3.7 获取n位随机英文字符串
 
 StringBuilder sb = **new** StringBuilder();
 
@@ -111,11 +111,11 @@ sb.append((**char**)t);
 
 System.*out*.append("sb is " + sb);
 
-### 获取n位随机英文和数字字符串
+### 7.3.8 获取n位随机英文和数字字符串
 
 定义一个长度为36的char类型数组，然后随机获取下表，组成字符串。
 
-### 获取n个随机中文字符串
+### 7.3.9 获取n个随机中文字符串
 
 String str = "";
 
@@ -149,12 +149,12 @@ String str = "";
 
 >   **return** str.charAt(0);
 
-日期工具类
+7.4 日期工具类
 ----------
 
-### 创建创建类
+### 7.4.1 创建创建类
 
-### 计算年龄
+### 7.4.2 计算年龄
 
 //由出生日期获得年龄
 
@@ -204,11 +204,11 @@ return age;
 
 }
 
-### 计算剩余天数
+### 7.4.2  计算剩余天数
 
 时间戳相减除以3600\*24
 
-### 判断是否为当天
+### 7.4.3  判断是否为当天
 
 >   **public static boolean** isToday(Date date) {
 
@@ -229,7 +229,7 @@ return age;
 
 >   }
 
-### 判断是否在本周
+### 7.4.4 判断是否在本周
 
 **public static boolean** isThisWeek(Date date) {
 
@@ -264,11 +264,11 @@ date.getTime()\>firstDayOfWeek.getTime().getTime() );
 
 >   }
 
-### 判断是否在本月
+### 7.4.5 判断是否在本月
 
 >   参见是否为当天
 
-### 给定时间对象，初始化到该月初的1日0时0分0秒0毫秒
+### 7.4.6 给定时间对象，初始化到该月初的1日0时0分0秒0毫秒
 
 >   Calendar c = Calendar.*getInstance*();
 
@@ -292,7 +292,9 @@ c.add(Calendar.*SECOND*, -1);
 
 **return** c.getTime();
 
-### 给定时间对象，设定到该月最一天的23时59分59秒999毫秒
+
+
+### 7.4.7 给定时间对象，设定到该月最一天的23时59分59秒999毫秒
 
 /\*
 
@@ -331,16 +333,16 @@ c.add(Calendar.*SECOND*, -1);
 
 }
 
-### 时间比较
+### 7.4.8 时间比较
 
 date.compareTo(*anotherDate*);
 
-文件工具类
+7.5  文件工具类
 ----------
 
-### 创建类
+### 7.5.1 创建类
 
-### 获取文件扩展名
+### 7.5.2 获取文件扩展名
 
 >   String fileName = file.getOriginalFilename();
 
@@ -352,13 +354,13 @@ date.compareTo(*anotherDate*);
 
 String newFileName = UUID.*randomUUID*().toString()+ suffix;
 
-### 删除文件
+### 7.5.3 删除文件
 
 如果是目录，则下面的文件和所有子目录中的文件都要删除
 
 使用递归。涉及内容。判断目录的存在性，判断是否为目录或文件，删除。
 
-### 获取操作系统用户目录
+### 7.5.4  获取操作系统用户目录
 
 String usrHome = System.getProperty("user.home");
 
@@ -392,7 +394,7 @@ String usrHome = System.getProperty("user.home");
 
 "user.name" User account name
 
-### 返回文件以指定单位大小表示
+### 7.5.5 返回文件以指定单位大小表示
 
 方法一：
 
@@ -416,16 +418,16 @@ System.out.println("文件"+fileName+"的大小是："+fis.available()+"\\n");
 
 }
 
-流工具类
+7.6 流工具类
 --------
 
-### 创建类
+### 7.6.1 创建类
 
-### 关闭流
+### 7.6.2 关闭流
 
 >   fis.close();
 
-### 复制流
+### 7.6.2  复制流
 
 InputStream inStream = **new** FileInputStream(realPath+filename);/
 
@@ -435,9 +437,9 @@ response.getOutputStream().write(b, 0, len);
 
 inStream.close();
 
-### 读取文本文件
+### 7.6.3  读取文本文件
 
-### 按行读取文本文件
+#### 7.6.3.1 按行读取文本文件
 
 /\*\*
 
@@ -505,7 +507,9 @@ e.printStackTrace();
 
 }
 
-### 按字节读取文件 
+
+
+#### 7.6.3.2 按字节读取文件 
 
 /\*\*
 
@@ -605,7 +609,9 @@ e.printStackTrace();
 
 }
 
-### 按字符读取文件
+
+
+#### 7.6.3.3 按字符读取文件
 
 /\*\*
 
@@ -669,7 +675,11 @@ e.printStackTrace();
 
 }
 
-### 写入文本文件
+
+
+
+
+#### 7.6.4 写入文本文件
 
 -   通过BufferedWriter写文件
 
@@ -819,7 +829,9 @@ e.printStackTrace();
 
 }
 
-### 网络文件下载
+
+
+#### 7.6.5 网络文件下载
 
 **public static void** download(String realPath,HttpServletRequest
 request,HttpServletResponse response,String filename) **throws**
