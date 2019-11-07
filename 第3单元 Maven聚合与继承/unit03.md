@@ -93,14 +93,132 @@
 
 ###  3.3.1 Service 模块
 
-| \<!-- spring 及springMVC --\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-core\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-context\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-beans\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-web\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-webmvc\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-jdbc\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-tx\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-context-support\</artifactId\> \</dependency\> \<!-- mybatis核心包 --\> \<dependency\> \<groupId\>org.mybatis\</groupId\> \<artifactId\>mybatis\</artifactId\> \</dependency\> \<!-- mybatis-spring 整合jar --\> \<dependency\> \<groupId\>org.mybatis\</groupId\> \<artifactId\>mybatis-spring\</artifactId\> \</dependency\> \<!-- druid数据源 --\> \<dependency\> \<groupId\>com.alibaba\</groupId\> \<artifactId\>druid\</artifactId\> \</dependency\> \<!-- Mysql数据库驱动包 --\> \<dependency\> \<groupId\>mysql\</groupId\> \<artifactId\>mysql-connector-java\</artifactId\> \</dependency\> \<!-- 日志文件管理包 --\> \<!-- log start --\> \<dependency\> \<groupId\>log4j\</groupId\> \<artifactId\>log4j\</artifactId\> \</dependency\> \<!-- 依赖的公共包 --\> \<dependency\> \<groupId\>org.apache.commons\</groupId\> \<artifactId\>commons-lang3\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.aspectj\</groupId\> \<artifactId\>aspectjweaver\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.aspectj\</groupId\> \<artifactId\>aspectjrt\</artifactId\> \</dependency\> \<dependency\> \<groupId\>com.github.pagehelper\</groupId\> \<artifactId\>pagehelper\</artifactId\> \</dependency\> \</dependencies\> |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```
+		<!-- spring 及springMVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- mybatis核心包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<!-- mybatis-spring 整合jar -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<!-- druid数据源 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<!-- Mysql数据库驱动包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- 日志文件管理包 -->
+		<!-- log start -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		 <!-- 依赖的公共包 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+		</dependency>
+  </dependencies>
+```
+
+
 
 
 ###  3.3.2 前端pom
 
-| \<dependencies\> \<!-- 上传组件包 --\> \<dependency\> \<groupId\>commons-fileupload\</groupId\> \<artifactId\>commons-fileupload\</artifactId\> \</dependency\> \<dependency\> \<groupId\>commons-io\</groupId\> \<artifactId\>commons-io\</artifactId\> \</dependency\> \<dependency\> \<groupId\>org.apache.poi\</groupId\> \<artifactId\>poi\</artifactId\> \</dependency\> \<!-- JSP相关 --\> \<dependency\> \<groupId\>jstl\</groupId\> \<artifactId\>jstl\</artifactId\> \</dependency\> \<dependency\> \<groupId\>javax.servlet.jsp\</groupId\> \<artifactId\>jsp-api\</artifactId\> \<scope\>provided\</scope\> \</dependency\> \<dependency\> \<groupId\>javax.servlet\</groupId\> \<artifactId\>servlet-api\</artifactId\> \<scope\>provided\</scope\> \</dependency\> \<dependency\> \<groupId\>com.fasterxml.jackson.core\</groupId\> \<artifactId\>jackson-databind\</artifactId\> \</dependency\> \</dependencies\> |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```
+     <dependencies>
+			<!-- 上传组件包 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<!-- JSP相关 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	</dependencies>
+	
+```
+
+
 
 
  3.4 依赖关系
@@ -108,8 +226,18 @@
 
 前端的运行依赖后端的服务，在ssm_web 的pom.xml中，加入server的依赖
 
-| \<dependencies\> \<dependency\> \<groupId\>com.hrxb\</groupId\> \<artifactId\>ssm_server\</artifactId\> \<version\>0.0.1-SNAPSHOT\</version\> \</dependency\> \</dependencies\> |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+​	
+
+```
+  <dependencies>
+  	<dependency>
+  		<groupId>com.hrxb</groupId>
+  		<artifactId>ssm_server</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
+```
+
 
 
 3.5 其他配置说明 
@@ -117,8 +245,107 @@
 
 ### 3.5.1 在ssm_web中web.xml 配置如下
 
-| \<?xml version=*"1.0"* encoding=*"UTF-8"*?\> \<web-app xmlns:xsi=*"http://www.w3.org/2001/XMLSchema-instance"* xmlns=*"http://java.sun.com/xml/ns/javaee"* xmlns:web=*"http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"* xsi:schemaLocation=*"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"* version=*"2.5"*\> \<display-name\>\</display-name\> \<welcome-file-list\> \<welcome-file\>index.jsp\</welcome-file\> \</welcome-file-list\> \<!-- 启动spring --\> \<listener\> \<listener-class\>org.springframework.web.context.ContextLoaderListener\</listener-class\> \</listener\> \<context-param\> \<param-name\>contextConfigLocation\</param-name\> \<param-value\>classpath:applicationContext.xml\</param-value\> \</context-param\> \<servlet\> \<servlet-name\>*springmvc*\</servlet-name\> \<servlet-class\>org.springframework.web.servlet.DispatcherServlet\</servlet-class\> \<init-param\> \<param-name\>contextConfigLocation\</param-name\> \<param-value\>classpath:springmvc.xml\</param-value\> \</init-param\> \</servlet\> \<servlet-mapping\> \<servlet-name\>*springmvc*\</servlet-name\> \<!-- 拦截所有请求 --\> \<url-pattern\>/\</url-pattern\> \</servlet-mapping\> \<filter\> \<filter-name\>CharacterEncodingFilter\</filter-name\> \<filter-class\>org.springframework.web.filter.CharacterEncodingFilter\</filter-class\> \<init-param\> \<param-name\>encoding\</param-name\> \<param-value\>*utf*-8\</param-value\> \</init-param\> \</filter\> \<filter-mapping\> \<filter-name\>CharacterEncodingFilter\</filter-name\> \<url-pattern\>/\*\</url-pattern\> \</filter-mapping\> \<error-page\> \<error-code\>404\</error-code\> \<location\>/WEB-INF/view/404.*jsp*\</location\> \</error-page\> \</web-app\> |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+<?xml version=*"1.0"* encoding=*"UTF-8"*?>
+
+<web-app xmlns:xsi=*"http://www.w3.org/2001/XMLSchema-instance"* xmlns=*"http://java.sun.com/xml/ns/javaee"* 
+
+   xmlns:web=*"http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"* xsi:schemaLocation=*"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"* version=*"2.5"*>
+
+  <display-name></display-name>
+
+  <welcome-file-list>
+
+​    <welcome-file>index.jsp</welcome-file>
+
+  </welcome-file-list>
+
+ 
+
+  <!-- 启动spring -->
+
+   <listener>
+
+​    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+
+  </listener>
+
+  <context-param>
+
+​    <param-name>contextConfigLocation</param-name>
+
+​    <param-value>classpath:applicationContext.xml</param-value>
+
+  </context-param>
+
+  <servlet>
+
+​    <servlet-name>springmvc</servlet-name>
+
+<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+ 
+
+​    <init-param>
+
+​      <param-name>contextConfigLocation</param-name>
+
+​      <param-value>classpath:springmvc.xml</param-value>
+
+​    </init-param>	
+
+  </servlet>
+
+  <servlet-mapping>
+
+​    <servlet-name>springmvc</servlet-name>
+
+​    <!-- 拦截所有请求 -->
+
+​    <url-pattern>/</url-pattern>
+
+  </servlet-mapping>
+
+  
+
+  <filter>
+
+​    <filter-name>CharacterEncodingFilter</filter-name>
+
+​    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+
+​    <init-param>
+
+​      <param-name>encoding</param-name>
+
+​      <param-value>utf-8</param-value>
+
+​    </init-param>
+
+  </filter>
+
+  <filter-mapping>
+
+​    <filter-name>CharacterEncodingFilter</filter-name>
+
+​    <url-pattern>/*</url-pattern>
+
+  </filter-mapping>
+
+  
+
+​        <error-page>
+
+​		<error-code>404</error-code>
+
+​		<location>/WEB-INF/view/404.jsp</location>
+
+​	   </error-page>
+
+</web-app>
+
+
 
 
 ### 3.5.2 资源文件
