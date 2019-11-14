@@ -74,7 +74,7 @@ CMS是Content Management System的缩写，意为"内容管理系统,是一种�
 
 ## **2.2** **系统技术支撑**
 
-![img](file:///C:\Users\charles\AppData\Local\Temp\ksohtml8336\wps24.jpg) 
+![img](ksohtml8336\wps24.jpg) 
 
 ## **2.3** **系统运行流程**
 
@@ -136,7 +136,7 @@ CMS是Content Management System的缩写，意为"内容管理系统,是一种�
 
 ### **3.1.2** **业务流程**
 
-![img](file:///C:\Users\charles\AppData\Local\Temp\ksohtml8336\wps25.png)
+![img](ksohtml8336\wps25.png)
 
 ### **3.1.3** **模块触发条件**
 
