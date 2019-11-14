@@ -273,8 +273,26 @@ Package为maven 的打包命令，Java 项目打成jar,web项目打成war 包
 
 上边的项目依赖junit jar，通过在pom.xml中配置junit 依赖。
 
-`| \<!-- 项目依赖 集合--\> \<dependencies\> \<!--单个依赖 --\> \<dependency\> \<!-- 依赖的组织或模块 --\> \<groupId\>*junit*\</groupId\> \<!-- -依赖的模块 --\> \<artifactId\>*junit*\</artifactId\> \<!-- 依赖的模块版本 --\> \<version\>4.9\</version\> \<!-- 依赖的范围 --\> \<scope\>test\</scope\> \</dependency\> \</dependencies\> |`
-`|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|`
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 项目依赖 集合-->
+<dependencies> 
+  <!--单个依赖 -->  
+  <dependency> 
+    <!-- 依赖的组织或模块 -->  
+    <groupId>*junit*</groupId>  
+    <!-- -依赖的模块 -->  
+    <artifactId>*junit*</artifactId>  
+    <!-- 依赖的模块版本 -->  
+    <version>4.9</version>  
+    <!-- 依赖的范围 -->  
+    <scope>test</scope> 
+  </dependency> 
+</dependencies>
+```
+
+
 
 
 1.8 Maven 在eclipse 中使用配置
@@ -304,8 +322,23 @@ Window –showview –other
 
 坐标是maven 对jar 包的身份定义，所以每个maven 项目都需要定义本工程的坐标。如：
 
-| \<!—项目名称 \<!-- 公司名称或组织名称 --\> \<groupId\>com.hrxb\</groupId\> \<!-- 项目或模块名称 --\> \<artifactId\>*attendmaven*\</artifactId\> \<!-- 项目或模块版本 --\> \<version\>0.0.1-SNAPSHOT\</version\> \<!-- 项目或模块的打包类型 war： web项目 jar :Java项目 *pom*:父工程设置为*pom* --\> \<packaging\>war\</packaging\> |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```xml
+    <!—项目名称 -->
+    <!-- 公司名称或组织名称 -->
+  <groupId>com.hrxb</groupId>
+  <!-- 项目或模块名称 -->
+  <artifactId>attendmaven</artifactId>
+  <!-- 项目或模块版本 -->
+  <version>0.0.1-SNAPSHOT</version>
+  <!-- 项目或模块的打包类型
+  war： web项目
+  jar :Java项目
+  pom:父工程设置为pom
+   -->
+  <packaging>war</packaging>
+```
+
+
 
 
 1.9 Maven构建web 工程
@@ -352,38 +385,70 @@ Window –showview –other
 
 ，需要在pom.xml 中加入
 
-| \<build\> \<plugins\> \<plugin\> |
-|----------------------------------|
+​	
+
+```xml
+<build>
+
+	<plugins>
+
+			<plugin>				 
+
+<groupId>org.apache.maven.plugins</groupId>
+
+				<artifactId>maven-compiler-plugin</artifactId>
+
+				<version>3.5.1</version>  
+
+				<configuration>
+
+					<source>1.8</source>
+
+					<target>1.8</target>
+
+					<encoding>UTF-8</encoding>
+
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+	</build>
+```
 
 
->   \<groupId\>org.apache.maven.plugins\</groupId\>
 
-\<artifactId\>*maven*-compiler-*plugin*\</artifactId\>
+```xml
 
-\<version\>3.5.1\</version\>
+```
 
-\<configuration\>
 
-\<source\>1.8\</source\>
-
-\<target\>1.8\</target\>
-
-\<encoding\>UTF-8\</encoding\>
-
-\</configuration\>
-
-\</plugin\>
-
-\</plugins\>
-
-\</build\>
 
 >   右键项目—maven—update project
 
-1.  使用pom.xml 加入struts2 需要的相关jar，向pom.xml中添加依赖
+1. 使用pom.xml 加入struts2 需要的相关jar，向pom.xml中添加依赖
 
-| \<dependencies\> \<dependency\> \<groupId\>org.apache.struts\</groupId\> \<artifactId\>struts2-core\</artifactId\> \<version\>2.3.24\</version\> \</dependency\> \</dependencies\> |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   ​	
+
+   ```xml
+   <dependencies>
+     	<dependency>
+     		<groupId>org.apache.struts</groupId>
+     		<artifactId>struts2-core</artifactId>
+     		<version>2.3.24</version>
+     	</dependency>
+     </dependencies>
+   ```
+
+   ```xml
+   
+   ```
+
+   
+
+
+
 
 
 添加完以后，项目目录出现
