@@ -422,53 +422,103 @@ Web服务器安装：apache、tomcat，配置域名并解析。
 
 引入包
 
-| \<script type="text/javascript" src="/script/jquery.min.js"\>\</script\> \<script type="text/javascript" src="/script/jquery.validate.min.js"\>\</script\> \<script src="/dist/localization/messages_zh.js"\>\</script\> |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+<script type="text/javascript" src="/script/jquery.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
+<script src="/dist/localization/messages_zh.js"></script>
+
 
 
 2、页面或CSS样式中增加高亮显示错误
 
-| .error{ color:red; } |
-|----------------------|
+​	
+
+```css
+.error{
+
+			color:red;
+
+		}
+
+
+```
 
 
 4、需要校验的页面增加
 
-| \<script\> \$().ready(function() { \$("\#form").validate(); }); \</script\> |
-|-----------------------------------------------------------------------------|
+<script>
 
+```javascript
+	$().ready(function() {
+
+		$("#form").validate();
+
+	});
+
+	</script> 
+	
+```
 
 >   5、在每个录入栏目目中增加规则
 
-| \<li\> \<span class="dis"\>用户名:\</span\> |
-|---------------------------------------------|
+​	 
+
+```javascript
+<li>
+
+<span class="dis">用户名:</span>
+
+           <input type="text" name="userName" id="userName" 
+
+              minlength="4" maxlength="24"  
+
+ remote="/user/checkName" required>
+
+</li>
+```
 
 
->   \<input type="text" name="userName" id="userName" minlength="4"
->   maxlength="24" remote="/user/checkName" required\>
-
-\</li\>
 
 >   6、校验
 
 >   A） 直接提交 在提交的时候会自动校验该表单中的内容是否合法，如果不合法
 >   则以高亮的形式显示错误
-
-| \$("\#form").submit(); |
-|------------------------|
+>
+>   ```javascript
+>    
+>   
+>   	 $("#form").submit();	
+>   ```
+>
+>   
 
 
 >   B）ajax
 >   提交，这种提交方式需要先手动调用validate方法，如果通过则调用ajax提交，否则停留在当前的页面
 
-| // 手动验证 然后提交 function commitShoudong(){ if(!\$("\#form").valid()){ return; } \$("\#form").submit(); } |
-|---------------------------------------------------------------------------------------------------------------|
+
+
+```javascript
+	// 手动验证 然后提交
+
+	function commitShoudong(){
+
+				 if(!$("#form").valid()){
+
+					return;
+
+				} 
+
+				 $("#form").submit();
+
+			}
+```
+
+
 
 
 1.  支持的校验规则
 
-| required:true 必输字段 |
-|------------------------|
+​       1.  required:true 必输字段 
 
 
 2.  remote:"check.jsp" 使用ajax方法调用check.jsp验证输入值
@@ -509,40 +559,76 @@ Web服务器安装：apache、tomcat，配置域名并解析。
 
 ### 11.8.2.1 引入依赖
 
-| \<dependency\> |
-|----------------|
-
-
->   \<groupId\>org.hibernate\</groupId\>
-
->   \<artifactId\>hibernate-validator\</artifactId\>
-
->   \<version\>5.2.4.Final\</version\>
-
->   \</dependency\>
+>   ​	
+>
+>   ```xml
+>      <dependency>
+>   
+>   			<groupId>org.hibernate</groupId>
+>   
+>   			<artifactId>hibernate-validator</artifactId>
+>   
+>   			<version>5.2.4.Final</version>
+>   
+>   	</dependency>
+>   ```
+>
+>   
 
 ### 11.8.2.2 使用校验规则 
 
 在实体Bean上使用注解方式增加校验规则
 
-| public class User implements Serializable { \@Length(max=10,min=5,message="哎呀，长度不合适啊") private String name; } |
-|------------------------------------------------------------------------------------------------------------------------|
+```java
+public class User implements Serializable {
+
+	    @Length(max=10,min=5,message="哎呀，长度不合适啊")
+
+	     private String name;
+
+	}
+```
+
 
 
 ###  11.8.2.3 控制层的处理
 
-修改提交的controller 当中的响应函数 重要的点：\@Validated
+修改提交的controller 当中的响应函数 重要的点：@Validated
 
-| \@RequestMapping(value="register",method=RequestMethod.POST) public String register(HttpServletRequest rquest,\@Validated \@ModelAttribute("user") User user, BindingResult result) { } |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```java
+@RequestMapping(value="register",method=RequestMethod.POST)
 
+	public String register(HttpServletRequest rquest,@Validated @ModelAttribute("user") User user,
+
+			BindingResult result) {
+
+		
+
+	}
+```
 
 Jsp视图层的处理
 
 视图jsp引入form 标签：
 
-| \<%\@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%\> \<form:form id="form" modelAttribute="user" action="register" method="post"\> \<!-- 这里是输入内容 --\> \<form:input type="password" path="passwd" name="passwd" id="passwd"/\> \<!-- 这里是如果有错误 则返回的错误 --\> \<form:errors path="passwd" cssClass="errorMsg"\>\</form:errors\> \</form:form\> |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```jsp
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+      使用form 标签  modelAttribute 中的属性值 必须与 3 中的ModelAttribute参数值一模一样
+
+       <form:form id="form" modelAttribute="user" action="register" method="post">
+
+			<!-- 这里是输入内容  -->
+
+			<form:input type="password" path="passwd" name="passwd" id="passwd"/>
+
+			<!-- 这里是如果有错误 则返回的错误  -->
+
+		    <form:errors path="passwd" cssClass="errorMsg"></form:errors> 
+	  </form:form>
+```
+
+
 
 
 >   使用form 标签 modelAttribute 中的属性值 必须与 3
@@ -553,15 +639,17 @@ Jsp视图层的处理
 
 比如：
 
-\@RequestMapping(value="register",method=RequestMethod.GET)
+```java
+@RequestMapping(value="register",method=RequestMethod.GET)
 
 public String register(HttpServletRequest rquest,HttpSession session) {
 
-rquest.setAttribute("user",new User());
+		rquest.setAttribute("user",new User());
 
-return "register1";
+	return "register1";
 
 }
+```
 
 4、jsp 的修改
 

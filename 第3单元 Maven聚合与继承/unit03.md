@@ -93,7 +93,7 @@
 
 ###  3.3.1 Service 模块
 
-```
+```xml
 		<!-- spring 及springMVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -179,7 +179,7 @@
 
 ###  3.3.2 前端pom
 
-```
+```xml
      <dependencies>
 			<!-- 上传组件包 -->
 		<dependency>
@@ -228,7 +228,7 @@
 
 ​	
 
-```
+```xml
   <dependencies>
   	<dependency>
   		<groupId>com.hrxb</groupId>
@@ -247,6 +247,7 @@
 
 
 
+```xml
 <?xml version=*"1.0"* encoding=*"UTF-8"*?>
 
 <web-app xmlns:xsi=*"http://www.w3.org/2001/XMLSchema-instance"* xmlns=*"http://java.sun.com/xml/ns/javaee"* 
@@ -257,7 +258,7 @@
 
   <welcome-file-list>
 
-​    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
 
   </welcome-file-list>
 
@@ -267,43 +268,43 @@
 
    <listener>
 
-​    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 
   </listener>
 
   <context-param>
 
-​    <param-name>contextConfigLocation</param-name>
+    <param-name>contextConfigLocation</param-name>
 
-​    <param-value>classpath:applicationContext.xml</param-value>
+    <param-value>classpath:applicationContext.xml</param-value>
 
   </context-param>
 
   <servlet>
 
-​    <servlet-name>springmvc</servlet-name>
+    <servlet-name>springmvc</servlet-name>
 
 <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
  
 
-​    <init-param>
+    <init-param>
 
-​      <param-name>contextConfigLocation</param-name>
+      <param-name>contextConfigLocation</param-name>
 
-​      <param-value>classpath:springmvc.xml</param-value>
+      <param-value>classpath:springmvc.xml</param-value>
 
-​    </init-param>	
+    </init-param>	
 
   </servlet>
 
   <servlet-mapping>
 
-​    <servlet-name>springmvc</servlet-name>
+    <servlet-name>springmvc</servlet-name>
 
-​    <!-- 拦截所有请求 -->
+    <!-- 拦截所有请求 -->
 
-​    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
 
   </servlet-mapping>
 
@@ -311,39 +312,40 @@
 
   <filter>
 
-​    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-name>CharacterEncodingFilter</filter-name>
 
-​    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 
-​    <init-param>
+    <init-param>
 
-​      <param-name>encoding</param-name>
+      <param-name>encoding</param-name>
 
-​      <param-value>utf-8</param-value>
+      <param-value>utf-8</param-value>
 
-​    </init-param>
+    </init-param>
 
   </filter>
 
   <filter-mapping>
 
-​    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-name>CharacterEncodingFilter</filter-name>
 
-​    <url-pattern>/*</url-pattern>
+    <url-pattern>/*</url-pattern>
 
   </filter-mapping>
 
   
 
-​        <error-page>
+        <error-page>
 
-​		<error-code>404</error-code>
+		<error-code>404</error-code>
 
-​		<location>/WEB-INF/view/404.jsp</location>
+		<location>/WEB-INF/view/404.jsp</location>
 
-​	   </error-page>
+	   </error-page>
 
 </web-app>
+```
 
 
 

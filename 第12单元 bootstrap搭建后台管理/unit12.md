@@ -20,92 +20,109 @@
 
 >   实现的代码如下：
 
->   \<ul class=*"navbar-nav ml-auto ml-md-0"*\>
-
->   \<li class=*"nav-item dropdown no-arrow mx-1"*\>
-
->   \<a class=*"nav-link"* href=*"\#"* id=*"messagesDropdown"* role=*"button"*
->   aria-haspopup=*"true"* aria-expanded=*"false"*\>
-
->   \<i class=*"fas fa-envelope fa-fw"*\>\</i\>
-
->   \<span class=*"badge badge-danger"*\>7\</span\>
-
->   \</a\>
-
->   \</li\>
-
->   \<li class=*"nav-item dropdown no-arrow"*\>
-
->   \<a class=*"nav-link dropdown-toggle"* href=*"\#"* id=*"userDropdown"*
->   role=*"button"* data-toggle=*"dropdown"* aria-haspopup=*"true"*
->   aria-expanded=*"false"*\>
-
->   \<i class=*"fas fa-user-circle fa-fw"*\>\</i\>
-
->   \</a\>
-
->   \<div class=*"dropdown-menu dropdown-menu-right"*
->   aria-labelledby=*"userDropdown"*\>
-
->   \<a class=*"dropdown-item"* href=*"\#"*\>返回网站\</a\>
-
->   \<a class=*"dropdown-item"* href=*"\#"*\>修改密码\</a\>
-
->   \<div class=*"dropdown-divider"*\>\</div\>
-
->   \<a class=*"dropdown-item"* href=*"/user/logout"* \>退出\</a\>
-
->   \</div\>
-
->   \</li\>
-
->   \</ul\>
-
->   \</nav\>
+>   ```html
+>    <ul class=*"navbar-nav ml-auto ml-md-0"*>
+>   
+>    <li class=*"nav-item dropdown no-arrow mx-1"*>
+>   
+>    <a class=*"nav-link"* href=*"#"* id=*"messagesDropdown"* role=*"button"*
+>    aria-haspopup=*"true"* aria-expanded=*"false"*>
+>   
+>    <i class=*"fas fa-envelope fa-fw"*></i>
+>   
+>    <span class=*"badge badge-danger"*>7</span>
+>   
+>    </a>
+>   
+>    </li>
+>   
+>    <li class=*"nav-item dropdown no-arrow"*>
+>   
+>    <a class=*"nav-link dropdown-toggle"* href=*"#"* id=*"userDropdown"*
+>    role=*"button"* data-toggle=*"dropdown"* aria-haspopup=*"true"*
+>    aria-expanded=*"false"*>
+>   
+>    <i class=*"fas fa-user-circle fa-fw"*></i>
+>   
+>    </a>
+>   
+>    <div class=*"dropdown-menu dropdown-menu-right"*
+>    aria-labelledby=*"userDropdown"*>
+>   
+>    <a class=*"dropdown-item"* href=*"#"*>返回网站</a>
+>   
+>    <a class=*"dropdown-item"* href=*"#"*>修改密码</a>
+>   
+>    <div class=*"dropdown-divider"*></div>
+>   
+>    <a class=*"dropdown-item"* href=*"/user/logout"* >退出</a>
+>   
+>    </div>
+>   
+>    </li>
+>   
+>    </ul>
+>   
+>    </nav>
+>   ```
+>
+>   
 
 ### 12.1.2 左侧
 
 >   左侧导航使用bootstrap 的实现。代码基本样式为：
 
->   \<ul class=*"sidebar navbar-nav"* \>
-
->   \<li class=*"nav-item"*\>\<a class=*"nav-link"* href=*"javascript:void(0)"
->   data*=*"/admin/manArticle"*\>
-
->   \<i class=*"fas fa-fw fa-folder"*\>\</i\> \<span\>文章管理\</span\>
-
->   \</a\>\</li\>
-
->   。。。。。。。。。。。。。
-
-\</ul\>
+>    <ul class=*"sidebar navbar-nav"* >
+>    
+>
+>   ```html
+>   <li class=*"nav-item"*><a class=*"nav-link"* href=*"javascript:void(0)"
+>    data*=*"/admin/manArticle"*>
+>   
+>    <i class=*"fas fa-fw fa-folder"*></i> <span>文章管理</span>
+>   
+>    </a></li>
+>   
+>    。。。。。。。。。。。。。
+>   
+>   </ul>
+>   ```
+>
+>
+>   
+>
 
 >   在整个页面加载完成后执行预加载函数，为每个li中的超链接增加点击事件，当点击以后右侧的工作区提供相应的操作。实现的代码如下：
 
->   \$('.nav-link').click(**function**(){
+ 
 
->   //获取当前默认高亮的属性
+```javascript
+$('.nav-link').click(function(){
 
->   **var** li = \$('.nav-link.active');
+ //获取当前默认高亮的属性
 
->   //移除目前高亮的样式
+ var li = $('.nav-link.active');
 
->   li.removeClass('active');
+ //移除目前高亮的样式
 
->   //为当前点击行添加高亮的样式
+ li.removeClass('active');
 
->   \$(**this**).addClass('active');
+ //为当前点击行添加高亮的样式
 
->   //获取点击的的*url*
+ $(this).addClass('active');
 
->   **var** url = \$(**this**).attr('data');
+ //获取点击的的*url*
 
->   //在中间区域显示地址的内容
+ var url = $(this).attr('data');
 
->   \$('\#content-wrapper').load(url);
+ //在中间区域显示地址的内容
 
->   })
+ $('#content-wrapper').load(url);
+
+ })
+```
+
+
 
 ## 12.2 后端
 

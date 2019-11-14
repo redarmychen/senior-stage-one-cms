@@ -44,8 +44,11 @@ Site Lifecycle： 生成项目报告，站点，发布站点。
 
 Clean生命周期一共包含了三个阶段：
 
-| pre-clean 执行一些需要在clean之前完成的工作 clean 移除所有上一次构建生成的文件 post-clean 执行一些需要在clean之后立刻完成的工作 |
-|---------------------------------------------------------------------------------------------------------------------------------|
+- pre-clean 执行一些需要在clean之前完成的工作 
+- clean 移除所有上一次构建生成的文件 
+- post-clean 执行一些需要在clean之后立刻完成的工作 
+
+
 
 
 也就是说，mvn clean 等同于 mvn pre-clean clean
@@ -58,16 +61,59 @@ Clean生命周期一共包含了三个阶段：
 
 -   Default生命周期是Maven生命周期中最重要的一个，绝大部分工作都发生在这个生命周期中。这里，只解释一些比较重要和常用的阶段
 
-| validate generate-sources process-sources generate-resources process-resources 复制并处理资源文件，至目标目录，准备打包。 **compile** 编译项目的源代码。 process-classes generate-test-sources process-test-sources generate-test-resources process-test-resources 复制并处理资源文件，至目标测试目录。 test-compile 编译测试源代码。 process-test-classes **test** 使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署。 prepare-package **package** 接受编译好的代码，打包成可发布的格式，如 JAR 。 pre-integration-test integration-test post-integration-test verify **install** 将包安装至本地仓库，以让其它项目依赖。 deploy 将最终的包复制到远程的仓库，以让其它开发人员与项目共享 |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
+- validate 
 
--   **运行任何一个阶段的时候，它前面的所有阶段都会被运行**
+  generate-sources 
 
--   这也就是为什么我们**运行mvn install
-    的时候，代码会被编译，测试，打包，安装到本地仓库**
+  process-sources 
 
--   此外，Maven的插件机制是完全依赖Maven的生命周期的，因此理解生命周期至关重要。
+  generate-resources 
+
+  process-resources 复制并处理资源文件，至目标目录，准备打包。 
+
+  **compile** 编译项目的源代码。 
+
+  process-classes 
+
+  generate-test-sources 
+
+  process-test-sources 
+
+  generate-test-resources 
+
+  process-test-resources 复制并处理资源文件，至目标测试目录。 
+
+  test-compile 编译测试源代码。 
+
+  process-test-classes 
+
+  **test** 使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署。 
+
+  prepare-package 
+
+  **package** 接受编译好的代码，打包成可发布的格式，如 JAR 。 
+
+  pre-integration-test 
+
+  integration-test 
+
+  post-integration-test 
+
+  verify 
+
+  **install** 将包安装至本地仓库，以让其它项目依赖。 
+
+  deploy 将最终的包复制到远程的仓库，以让其它开发人员与项目共享
+
+-   
+
+- **运行任何一个阶段的时候，它前面的所有阶段都会被运行**
+
+- 这也就是为什么我们**运行mvn install
+  的时候，代码会被编译，测试，打包，安装到本地仓库**
+
+- 此外，Maven的插件机制是完全依赖Maven的生命周期的，因此理解生命周期至关重要。
 
 ### 4.2.3 Sit生命周期：生成项目站点
 
@@ -82,16 +128,43 @@ Clean生命周期一共包含了三个阶段：
 4.3 Maven插件
 ---------
 
--   可以通过pom.xml配置插件来更改项目编译compile的jdk版本
+- 可以通过pom.xml配置插件来更改项目编译compile的jdk版本
 
-    **compile插件**
+  **compile插件**
 
--   如图：
 
-| [./media/image1.png](./media/image1.png)                                                                                                                                                                                                                                                          |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **代码**                                                                                                                                                                                                                                                                                          |
-| \<build\> \<plugins\> \<plugin\> \<groupId\>org.apache.maven.plugins\</groupId\> \<artifactId\>*maven*-compiler-*plugin*\</artifactId\> \<configuration\> \<source\>1.8\</source\> \<target\>1.8\</target\> \<encoding\>UTF-8\</encoding\> \</configuration\> \</plugin\> \</plugins\> \</build\> |
+```xml
+   <build>
+
+  	<plugins>
+
+  		<plugin>
+
+			<groupId>org.apache.maven.plugins</groupId>
+
+			<artifactId>maven-compiler-plugin</artifactId>
+
+			<configuration>
+
+				<source>1.8</source>
+
+				<target>1.8</target>
+
+				<encoding>UTF-8</encoding>
+
+			</configuration>
+
+		</plugin>
+
+  	</plugins>
+```
+
+
+
+|      |
+| ---- |
+|      |
+|      |
 
 4.4 私服（远程仓库）
 ----------------
@@ -163,32 +236,51 @@ settings.xml 文件，配置连接私服的用户和密码 。
 此用户名和密码用于私服校验，因为私服需要知道上传都 的账号和密码
 是否和私服中的账号和密码 一致。
 
-\<server\>
 
-\<id\>releases\</id\>
 
-\<username\>admin\</username\>
+```xml
+ <server>
+      <id>releases</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+	<server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+ </server>
 
-\<password\>admin123\</password\>
 
-\</server\>
 
-\<server\>
-
-\<id\>snapshots\</id\>
-
-\<username\>admin\</username\>
-
-\<password\>admin123\</password\>
-
-\</server\>
+```
 
 第二步： 配置项目pom.xml
 
 配置私服仓库的地址，jar包会上传到私服的宿主仓库，根据工程的版本号决定上传到哪个宿主仓库，如果版本为release则上传到私服的release仓库，如果版本为snapshot则上传到私服的snapshot仓库
 
-| \<distributionManagement\> \<repository\> \<id\>releases\</id\> \<url\>http://localhost:8081/nexus/content/repositories/releases/\</url\> \</repository\> \<snapshotRepository\> \<id\>snapshots\</id\> \<url\>http://localhost:8081/nexus/content/repositories/snapshots/\</url\> \</snapshotRepository\> \</distributionManagement\> |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```xml
+<distributionManagement>
+
+  	<repository>
+
+  		<id>releases</id>
+
+	<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+
+  	</repository> 
+
+  	<snapshotRepository>
+
+  		<id>snapshots</id>
+
+	<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+
+  	</snapshotRepository> 
+
+  </distributionManagement>
+```
+
+
 
 
 注意：pom.xml这里\<id\> 和 settings.xml 配置 \<id\> 对应！
@@ -201,71 +293,81 @@ settings.xml 文件，配置连接私服的用户和密码 。
 
 第一步 修改settings.xml
 
-\<profile\>
+```xml
 
-\<!--profile的id--\>
 
-\<id\>dev\</id\>
+<profile>   
 
-\<repositories\>
+	<!--profile的id-->
 
-\<repository\>
+    <id>dev</id>   
 
-\<!--仓库id，repositories可以配置多个仓库，保证id不重复--\>
+    <repositories>   
 
-\<id\>nexus\</id\>
+      <repository>  
 
-\<!--仓库地址，即nexus仓库组的地址--\>
+		<!--仓库id，repositories可以配置多个仓库，保证id不重复-->
 
-\<url\>http://localhost:8081/nexus/content/groups/public/\</url\>
+        <id>nexus</id>   
 
-\<!--是否下载releases构件--\>
+		<!--仓库地址，即nexus仓库组的地址-->
 
-\<releases\>
+        <url>http://localhost:8081/nexus/content/groups/public/</url>   
 
-\<enabled\>true\</enabled\>
+		<!--是否下载releases构件-->
 
-\</releases\>
+        <releases>   
 
-\<!--是否下载snapshots构件--\>
+          <enabled>true</enabled>   
 
-\<snapshots\>
+        </releases>   
 
-\<enabled\>true\</enabled\>
+		<!--是否下载snapshots构件-->
 
-\</snapshots\>
+        <snapshots>   
 
-\</repository\>
+          <enabled>true</enabled>   
 
-\</repositories\>
+        </snapshots>   
 
-\<pluginRepositories\>
+      </repository>   
 
-\<!-- 插件仓库，maven的运行依赖插件，也需要从私服下载插件 --\>
+    </repositories>  
 
-\<pluginRepository\>
+	 <pluginRepositories>  
 
-\<!-- 插件仓库的id不允许重复，如果重复后边配置会覆盖前边 --\>
+    	<!-- 插件仓库，maven的运行依赖插件，也需要从私服下载插件 -->
 
-\<id\>public\</id\>
+        <pluginRepository>  
 
-\<name\>Public Repositories\</name\>
+        	<!-- 插件仓库的id不允许重复，如果重复后边配置会覆盖前边 -->
 
-\<url\>http://localhost:8081/nexus/content/groups/public/\</url\>
+            <id>public</id>  
 
-\</pluginRepository\>
+            <name>Public Repositories</name>  
 
-\</pluginRepositories\>
+            <url>http://localhost:8081/nexus/content/groups/public/</url>  
 
-\</profile\>
+        </pluginRepository>  
+
+    </pluginRepositories>  
+
+  </profile> 
+```
+
+
 
 激活 注意dev 和 profile 一致
 
-\<activeProfiles\>
+```xml
+<activeProfiles>
 
-\<activeProfile\>dev\</activeProfile\>
+    <activeProfile>dev</activeProfile>
 
-\</activeProfiles\>
+</activeProfiles>
+```
+
+
 
 第二步 删除本地仓库中jar
 
@@ -276,6 +378,245 @@ settings.xml 文件，配置连接私服的用户和密码 。
 
 pom文件
 
-| \<!-- 定义主要版本号 --\> \<properties\> \<spring.version\>4.3.13.RELEASE\</spring.version\> \<mybatis.version\>3.4.2\</mybatis.version\> \<log4j.version\>1.2.17\</log4j.version\> \<druid.version\>1.0.9\</druid.version\> \<mysql.version\>5.1.6\</mysql.version\> \<mybatis.spring.version\>1.3.0\</mybatis.spring.version\> \<jackson.version\>2.8.1\</jackson.version\> \<poi.version\>3.9\</poi.version\> \<jstl.version\>1.2\</jstl.version\> \<servlet-api.version\>2.5\</servlet-api.version\> \<jsp-api.version\>2.0\</jsp-api.version\> \<commons-lang3.version\>3.3.2\</commons-lang3.version\> \<commons-io.version\>1.3.1\</commons-io.version\> \<commons-net.version\>3.3\</commons-net.version\> \<commons-fileupload.version\>1.3.1\</commons-fileupload.version\> \<junit-version\>4.12\</junit-version\> \<!-- aop使用 --\> \<aspectj-version\>1.8.0\</aspectj-version\> \<!-- 分页助手 --\> \<pagehelper-version\>5.1.2\</pagehelper-version\> \</properties\> \<!-- 依赖管理，版本锁定 --\> \<dependencies\> \<!-- spring 及springMVC --\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-core\</artifactId\> \<!-- 引用版本 --\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-context\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-beans\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-web\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-webmvc\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-jdbc\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-tx\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-context-support\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<!-- mybatis核心包 --\> \<dependency\> \<groupId\>org.mybatis\</groupId\> \<artifactId\>mybatis\</artifactId\> \<version\>\${mybatis.version}\</version\> \</dependency\> \<!-- mybatis-spring 整合jar --\> \<dependency\> \<groupId\>org.mybatis\</groupId\> \<artifactId\>mybatis-spring\</artifactId\> \<version\>\${mybatis.spring.version}\</version\> \</dependency\> \<!-- druid数据源 --\> \<dependency\> \<groupId\>com.alibaba\</groupId\> \<artifactId\>druid\</artifactId\> \<version\>\${druid.version}\</version\> \</dependency\> \<!-- Mysql数据库驱动包 --\> \<dependency\> \<groupId\>mysql\</groupId\> \<artifactId\>mysql-connector-java\</artifactId\> \<version\>\${mysql.version}\</version\> \</dependency\> \<!-- 日志文件管理包 --\> \<!-- log start --\> \<dependency\> \<groupId\>log4j\</groupId\> \<artifactId\>log4j\</artifactId\> \<version\>\${log4j.version}\</version\> \</dependency\> \<!-- 单元测试 --\> \<dependency\> \<groupId\>junit\</groupId\> \<artifactId\>junit\</artifactId\> \<version\>\${junit-version}\</version\> \<scope\>test\</scope\> \</dependency\> \<!-- 上传组件包 --\> \<dependency\> \<groupId\>commons-fileupload\</groupId\> \<artifactId\>commons-fileupload\</artifactId\> \<version\>\${commons-fileupload.version}\</version\> \</dependency\> \<dependency\> \<groupId\>commons-io\</groupId\> \<artifactId\>commons-io\</artifactId\> \<version\>\${commons-io.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.apache.poi\</groupId\> \<artifactId\>poi\</artifactId\> \<version\>\${poi.version}\</version\> \</dependency\> \<!-- JSP相关 --\> \<dependency\> \<groupId\>jstl\</groupId\> \<artifactId\>jstl\</artifactId\> \<version\>\${jstl.version}\</version\> \</dependency\> \<dependency\> \<groupId\>javax.servlet.jsp\</groupId\> \<artifactId\>jsp-api\</artifactId\> \<version\>2.2\</version\> \<scope\>provided\</scope\> \</dependency\> \<dependency\> \<groupId\>javax.servlet\</groupId\> \<artifactId\>servlet-api\</artifactId\> \<version\>\${servlet-api.version}\</version\> \<scope\>provided\</scope\> \</dependency\> \<dependency\> \<groupId\>com.fasterxml.jackson.core\</groupId\> \<artifactId\>jackson-databind\</artifactId\> \<version\>\${jackson.version}\</version\> \</dependency\> \<!-- 依赖的公共包 --\> \<dependency\> \<groupId\>org.apache.commons\</groupId\> \<artifactId\>commons-lang3\</artifactId\> \<version\>\${commons-lang3.version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.aspectj\</groupId\> \<artifactId\>aspectjweaver\</artifactId\> \<version\>\${aspectj-version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.aspectj\</groupId\> \<artifactId\>aspectjrt\</artifactId\> \<version\>\${aspectj-version}\</version\> \</dependency\> \<!-- mybaits pagehelper 分页助手 --\> \<dependency\> \<groupId\>com.github.pagehelper\</groupId\> \<artifactId\>pagehelper\</artifactId\> \<version\>\${pagehelper-version}\</version\> \</dependency\> \<dependency\> \<groupId\>org.springframework\</groupId\> \<artifactId\>spring-test\</artifactId\> \<version\>\${spring.version}\</version\> \</dependency\> \<!-- 富文本编辑器使用该文件上传 --\> \<dependency\> \<groupId\>com.googlecode.json-simple\</groupId\> \<artifactId\>json-simple\</artifactId\> \<version\>1.1.1\</version\> \</dependency\> \<!-- 依赖公共工具包 --\> \<dependency\> \<groupId\>com.zhangsan\</groupId\> \<artifactId\>cms_common\</artifactId\> \<version\>0.0.1-SNAPSHOT\</version\> \</dependency\> \<!-- md5工具包 --\> \</dependencies\> \<build\> \<plugins\> \<plugin\> \<groupId\>org.apache.maven.plugins\</groupId\> \<artifactId\>maven-compiler-plugin\</artifactId\> \<version\>3.5.1\</version\> \<configuration\> \<source\>1.8\</source\> \<target\>1.8\</target\> \<encoding\>UTF-8\</encoding\> \</configuration\> \</plugin\> \<!-- Tomcat插件：非官方插件，第三方插件，用于启动Web服务。运行命令：tomcat7:run --\> \<plugin\> \<groupId\>org.apache.tomcat.maven\</groupId\> \<artifactId\>tomcat7-maven-plugin\</artifactId\> \<version\>2.2\</version\> \<configuration\> \<!-- 项目端口号 --\> \<port\>80\</port\> \<!-- 项目的访问路径 --\> \<path\>/\</path\> \<!-- get请求中文乱码 --\> \<uriEncoding\>utf-8\</uriEncoding\> \<!-- 配置tomcat虚拟路径 --\> \<staticContextPath\>/pic\</staticContextPath\> \<!-- 配置tomcat物理路径 --\> \<staticContextDocbase\>d:/pic\</staticContextDocbase\> \</configuration\> \</plugin\> \</plugins\> \</build\> |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+​	
+
+```xml
+<!-- 定义主要版本号 -->
+	<properties>
+		<spring.version>4.3.13.RELEASE</spring.version>
+		<mybatis.version>3.4.2</mybatis.version>
+		<log4j.version>1.2.17</log4j.version>
+		<druid.version>1.0.9</druid.version>
+		<mysql.version>5.1.6</mysql.version>
+		<mybatis.spring.version>1.3.0</mybatis.spring.version>
+		<jackson.version>2.8.1</jackson.version>
+		<poi.version>3.9</poi.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<jsp-api.version>2.0</jsp-api.version>
+		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<commons-io.version>1.3.1</commons-io.version>
+		<commons-net.version>3.3</commons-net.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<junit-version>4.12</junit-version>
+		<!-- aop使用 -->
+		<aspectj-version>1.8.0</aspectj-version>
+		<!-- 分页助手 -->
+		<pagehelper-version>5.1.2</pagehelper-version>
+
+	</properties>
+
+	<!-- 依赖管理，版本锁定 -->
+
+	<dependencies>
+		<!-- spring 及springMVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<!-- 引用版本 -->
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- mybatis核心包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<!-- mybatis-spring 整合jar -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+		<!-- druid数据源 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		<!-- Mysql数据库驱动包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!-- 日志文件管理包 -->
+		<!-- log start -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+
+		</dependency>
+
+
+		<!-- 单元测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- 上传组件包 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<!-- JSP相关 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- 依赖的公共包 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj-version}</version>
+		</dependency>
+
+		<!-- mybaits pagehelper 分页助手 -->
+
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+       <!-- 富文本编辑器使用该文件上传 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+<!-- 依赖公共工具包 -->
+		<dependency>
+			<groupId>com.zhangsan</groupId>
+			<artifactId>cms_common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- md5工具包 -->
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+
+			<!-- Tomcat插件：非官方插件，第三方插件，用于启动Web服务。运行命令：tomcat7:run -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+				     <!-- 项目端口号 -->
+					<port>80</port>
+					 <!-- 项目的访问路径 -->
+					<path>/</path>
+					<!-- get请求中文乱码 -->
+					<uriEncoding>utf-8</uriEncoding>
+					<!-- 配置tomcat虚拟路径 -->
+					<staticContextPath>/pic</staticContextPath>
+					<!-- 配置tomcat物理路径 -->
+					<staticContextDocbase>d:/pic</staticContextDocbase>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+	</build>
+```
 

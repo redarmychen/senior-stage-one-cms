@@ -55,9 +55,13 @@
 
 判断源字符串是否有值，空引号也算没值；
 
+```java
 null != src && src.length() \> 0;
 
 null != src && src.trim().length() \> 0;
+```
+
+
 
 ### 7.3.3 是否有值
 
@@ -69,6 +73,7 @@ null != src && src.trim().length() \> 0;
 
 使用正则表达式。
 
+```java
 String regex =
 "\^((13[0-9])\|(14[5\|7])\|(15([0-3]\|[5-9]))\|(17[013678])\|(18[0,5-9]))\\\\d{8}\$";
 
@@ -80,8 +85,12 @@ boolean isMatch = m.matches();
 
 Return isMatch ;
 
+### 
+```
+
 ### 7.3.5  验证邮箱
 
+```java
 String regEx1 =
 "\^([a-z0-9A-Z]+[-\|\\\\.]?)+[a-z0-9A-Z]\@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-zA-Z]{2,}\$";
 
@@ -91,12 +100,20 @@ Matcher m = p.matcher(email);
 
 Return m;
 
+
+```
+
 ### 7.3.6 验证全为字母
 
+```java
 String regEx1 = “[a-zA-Z]?”;
+```
+
+
 
 ### 7.3.7 获取n位随机英文字符串
 
+```java
 StringBuilder sb = **new** StringBuilder();
 
 Random random = **new** Random();
@@ -111,43 +128,51 @@ sb.append((**char**)t);
 
 System.*out*.append("sb is " + sb);
 
+
+
+```
+
 ### 7.3.8 获取n位随机英文和数字字符串
 
 定义一个长度为36的char类型数组，然后随机获取下表，组成字符串。
 
 ### 7.3.9 获取n个随机中文字符串
 
+```
 String str = "";
 
->   **int** hightPos; //
+ int hightPos; //
 
->   **int** lowPos;
+ int lowPos;
 
->   Random random = **new** Random();
+ Random random = new Random();
 
->   hightPos = (176 + Math.*abs*(random.nextInt(39)));
+ hightPos = (176 + Math.*abs*(random.nextInt(39)));
 
->   lowPos = (161 + Math.*abs*(random.nextInt(93)));
+ lowPos = (161 + Math.*abs*(random.nextInt(93)));
 
->   **byte**[] b = **new byte**[2];
+ byte[] b = new byte[2];
 
->   b[0] = (Integer.*valueOf*(hightPos)).byteValue();
+ b[0] = (Integer.*valueOf*(hightPos)).byteValue();
 
->   b[1] = (Integer.*valueOf*(lowPos)).byteValue();
+ b[1] = (Integer.*valueOf*(lowPos)).byteValue();
 
->   **try** {
+ try {
 
->   str = **new** String(b, "GBK");
+ str = new String(b, "GBK");
 
->   } **catch** (Exception e) {
+ } catch (Exception e) {
 
->   e.printStackTrace();
+ e.printStackTrace();
 
->   System.*out*.println("错误");
+ System.*out*.println("错误");
 
->   }
+ }
 
->   **return** str.charAt(0);
+ return str.charAt(0);
+
+## 
+```
 
 7.4 日期工具类
 ----------
@@ -156,6 +181,7 @@ String str = "";
 
 ### 7.4.2 计算年龄
 
+```java
 //由出生日期获得年龄
 
 public static int getAge(Date birthDay) throws Exception {
@@ -203,6 +229,9 @@ age--;
 return age;
 
 }
+```
+
+
 
 ### 7.4.2  计算剩余天数
 
@@ -210,59 +239,69 @@ return age;
 
 ### 7.4.3  判断是否为当天
 
->   **public static boolean** isToday(Date date) {
-
->   SimpleDateFormat fmt = **new** SimpleDateFormat("yyyy-MM-dd");
-
->   **if** (fmt.format(date).toString().equals(fmt.format(**new**
->   Date()).toString())) {
-
->   // 格式化为相同格式
-
->   **return true**;
-
->   } **else** {
-
->   **return false**;
-
->   }
-
->   }
+>   **
+>
+>   ```java
+>   > public static boolean** isToday(Date date) {
+>   
+>   > SimpleDateFormat fmt = **new** SimpleDateFormat("yyyy-MM-dd");
+>   
+>   > **if** (fmt.format(date).toString().equals(fmt.format(**new**
+>   > Date()).toString())) {
+>   
+>   > // 格式化为相同格式
+>   
+>   > **return true**;
+>   
+>   > } **else** {
+>   
+>   > **return false**;
+>   
+>   > }
+>   
+>   > }
+>   ```
+>
+>   
 
 ### 7.4.4 判断是否在本周
 
-**public static boolean** isThisWeek(Date date) {
-
-SimpleDateFormat format = **new** SimpleDateFormat("yyyyMMdd");
-
-Calendar firstDayOfWeek = Calendar.*getInstance*(Locale.*getDefault*());
-
-firstDayOfWeek.setFirstDayOfWeek(Calendar.*MONDAY*);
-
-**int** day = firstDayOfWeek.get(Calendar.*DAY_OF_WEEK*);
-
-firstDayOfWeek.add(Calendar.*DATE*, -day+1+1);// 后面的+1是因为从周日开始
-
-// 本周一的日期
-
-System.*out*.println(format.format(firstDayOfWeek.getTime()));
-
-Calendar lastDayOfWeek = Calendar.*getInstance*(Locale.*getDefault*());
-
-lastDayOfWeek.setFirstDayOfWeek(Calendar.*MONDAY*);
-
-day = lastDayOfWeek.get(Calendar.*DAY_OF_WEEK*);
-
-lastDayOfWeek.add(Calendar.*DATE*, 7-day+1);
-
-// 本周星期天的日期
-
-System.*out*.println(format.format(lastDayOfWeek.getTime()));
-
-**return** (date.getTime()\<lastDayOfWeek.getTime().getTime() &&
-date.getTime()\>firstDayOfWeek.getTime().getTime() );
-
->   }
+>   ```java
+>   public static boolean** isThisWeek(Date date) {
+>   
+>   SimpleDateFormat format = **new** SimpleDateFormat("yyyyMMdd");
+>   
+>   Calendar firstDayOfWeek = Calendar.*getInstance*(Locale.*getDefault*());
+>   
+>   firstDayOfWeek.setFirstDayOfWeek(Calendar.*MONDAY*);
+>   
+>   **int** day = firstDayOfWeek.get(Calendar.*DAY_OF_WEEK*);
+>   
+>   firstDayOfWeek.add(Calendar.*DATE*, -day+1+1);// 后面的+1是因为从周日开始
+>   
+>   // 本周一的日期
+>   
+>   System.*out*.println(format.format(firstDayOfWeek.getTime()));
+>   
+>   Calendar lastDayOfWeek = Calendar.*getInstance*(Locale.*getDefault*());
+>   
+>   lastDayOfWeek.setFirstDayOfWeek(Calendar.*MONDAY*);
+>   
+>   day = lastDayOfWeek.get(Calendar.*DAY_OF_WEEK*);
+>   
+>   lastDayOfWeek.add(Calendar.*DATE*, 7-day+1);
+>   
+>   // 本周星期天的日期
+>   
+>   System.*out*.println(format.format(lastDayOfWeek.getTime()));
+>   
+>   **return** (date.getTime()\<lastDayOfWeek.getTime().getTime() &&
+>   date.getTime()\>firstDayOfWeek.getTime().getTime() );
+>   
+>   > }
+>   ```
+>
+>   
 
 ### 7.4.5 判断是否在本月
 
