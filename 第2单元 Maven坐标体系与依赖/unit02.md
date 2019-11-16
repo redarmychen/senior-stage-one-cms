@@ -34,11 +34,8 @@
 
 坐标是maven 对jar 包的身份定义，所以每个maven 项目都需要定义本工程的坐标。如：
 
-
-
-<!—项目名称 ->
-
-​    <!-- 公司名称或组织名称 -->
+```xml
+   <!-- 公司名称或组织名称 -->
 
   <groupId>com.hrxb</groupId>
 
@@ -61,8 +58,7 @@
    -->
 
   <packaging>war</packaging>
-
-
+```
 
 
 
@@ -74,7 +70,8 @@
 
 -   在pom.xml通过输入坐标添加依赖， 如添加spring-webmvc
 
-​          <dependency>
+   ```xml
+   <dependency>
 
   		<groupId>org.springframework</groupId>
 
@@ -83,6 +80,9 @@
   		<version>4.3.13.RELEASE</version>
 
   	</dependency>
+
+
+   ```
 
 
 
@@ -114,7 +114,7 @@ jar 包，程序也不会报错。
 
 Test：编译，测试需要，运行，打包不需要 junit
 
-system:
+system:系统范围，与provided类似，只是标记为该scope的依赖包需要明确指定基于文件系统的jar包路径。因为需要通过systemPath指定本地jar文件路径，所以该scope是不推荐的
 
 ### 2.3.4 依赖传递
 
@@ -217,8 +217,6 @@ Analyzer分析冲突的jar包，然后在对应标红版本的jar包上面点击
 
 ![](media/d3c07ce25bb14c96766a864a671cc413.png)
 
-在maven 的安装路径的 conf 下设置settings.xml
+在maven 的安装路径的 conf 下设置settings.xml,如上图
 
-\<localRepository\>D:\\2017\\maven\\repository\</localRepository\>
 
-表示本地的仓库地址为D:\\2017\\maven\\repository 该路径下
