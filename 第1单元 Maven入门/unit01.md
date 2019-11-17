@@ -32,7 +32,7 @@
 
 >   2、jar版本的管理？
 
->   3、如何打包？ 如果自己的打包供他人使用？
+>   3、如何打包？ 如果将自己项目打成包供他人使用？
 
 1.2 Maven介绍
 ---------
@@ -44,7 +44,7 @@ Maven是Apache 下开源的、纯java开发的一个项目管理工具。使用M
 
 项目构建是一个项目从编写代码、编译、测试、运行、打包、部署、运行的过程。
 
-### 1.2.2 传统的eclipse 构建项目步骤
+### 1.2.2 传统eclipse 构建项目步骤
 
 1.  在eclpise 中创建WEB 项目
 
@@ -58,8 +58,7 @@ Maven是Apache 下开源的、纯java开发的一个项目管理工具。使用M
 
 ### 1.2.3 Maven 构建项目步骤
 
->   Maven
->   对项目的每个过程进行标准化管理，使用一个命令就可以完成一个标准过程，从而简化项目过程。
+>   Maven对项目的每个过程进行标准化管理，使用一个命令就可以完成一个标准过程，从而简化项目过程。
 
 1.  compile :Java文件编译成.class文件
 
@@ -73,8 +72,7 @@ Maven是Apache 下开源的、纯java开发的一个项目管理工具。使用M
 
 -   什么是依赖
 
->   一个java 项目需要第三方的JAR 支持，才能运行，那么该项目就依赖的了第三方jar
->   包
+>   一个java 项目需要第三方的JAR 支持，才能运行，那么该项目就依赖的了第三方jar包
 
 -   什么是依赖管理
 
@@ -126,7 +124,7 @@ Maven是Apache 下开源的、纯java开发的一个项目管理工具。使用M
 
 ### 1.2.2 配置maven环境变量
 
--   设置环境变量
+-   设置环境变量 
 
 ![](media/c3400e94f5507113a6976f9f42e08cfe.png)
 
@@ -172,6 +170,8 @@ jar 到本地仓库中。本地仓库可以理解为缓存.
 
 ![](media/74ad5200b3f613874e6ace05eb5ae067.png)
 
+以上数字为模拟数据,大约比例数据
+
 ### 1.4.2 本地仓库
 
 用来存储从远程仓库或中央仓库下载的jar 包. 项目中使用的jar， 从本地仓库中查找。
@@ -201,11 +201,7 @@ jar 到本地仓库中。本地仓库可以理解为缓存.
 
 ![](media/d3c07ce25bb14c96766a864a671cc413.png)
 
->   在maven 的安装路径的 conf 下设置settings.xml
-
->   \<localRepository\>D:\\2017\\maven\\repository\</localRepository\>
-
->   表示本地的仓库地址为D:\\2017\\maven\\repository 该路径下
+>   在maven 的安装路径的 conf 下设置settings.xml,如上图,则表示Maven的本地仓库路径
 
 1.6 Maven 快速入门
 --------------
@@ -213,8 +209,9 @@ jar 到本地仓库中。本地仓库可以理解为缓存.
 ### 1.6.1 学习重点
 
 -   Maven的 目录结构是什么
-
 -   Maven 常用的命令有哪些
+-   Maven 在eclipse 中使用配置
+-   Maven构建web 工程
 
 ### 1.6.2 Maven 项目目录规范
 
@@ -323,9 +320,8 @@ Window –showview –other
 坐标是maven 对jar 包的身份定义，所以每个maven 项目都需要定义本工程的坐标。如：
 
 ```xml
-    <!—项目名称 -->
-    <!-- 公司名称或组织名称 -->
-  <groupId>com.hrxb</groupId>
+ <!-- 公司名称或组织名称 -->
+  <groupId>com.bw</groupId>
   <!-- 项目或模块名称 -->
   <artifactId>attendmaven</artifactId>
   <!-- 项目或模块版本 -->
@@ -346,9 +342,9 @@ Window –showview –other
 
 ### 1.9.1 业务需求
 
-创建一个web 工程，使用struts2
-实现，在浏览器输入http://127.0.0.1:8080/maven/helloMaven 页面跳转到 index.jsp
-页面并显示 hello maven.
+使用Maven创建一个web 工程，依赖SpringMvc的jar
+实现，在浏览器输入http://127.0.0.1/hello,页面能跳转到 index.jsp
+并显示 hello maven.
 
 ### 1.9.2 开发步骤
 
@@ -356,19 +352,19 @@ Window –showview –other
 
 ![](media/d81d9d37fd0dab355e9f763ca9cdb288.png)
 
-1.  跳过模板选择如下图
+2.跳过模板选择如下图
 
 ![](media/f175973361561938d8415fd9515fba15.png)
 
-1.  定义坐标
+3.定义坐标
 
-![](media/1d8ff9fdd3f9613528a43ad8f3a9e8f5.png)
+![1573810154034](media/1573810154034.png)
 
-1.  点finish后形成的结果如下图
+4.点finish后形成的结果如下图
 
 ![](media/2bfb66895a2036f7719bee175a5e840c.png)
 
-1.  处理项目错误
+5.处理项目错误
 
 >   Maven 默认不会创建web.xml文件，需要手工创建，注意需要在WEB-INF 下创建
 >   web.xml ,如下图
@@ -379,45 +375,49 @@ Window –showview –other
 
 ![](media/b03f1105c42c1504d4322fc898d7f527.png)
 
-1.  处理设置项目的编译版本
+6.处理设置项目的编译版本
 
 >   项目创建好以后，默认的编译版本为1.5，本教程使用jdk8，所以需要重新设置编译的版本为Jdk8
 
-，需要在pom.xml 中加入
+，在pom.xml 中加入
 
 ​	
 
 ```xml
 <build>
-
-	<plugins>
-
-			<plugin>				 
-
-<groupId>org.apache.maven.plugins</groupId>
-
+		<plugins>
+			<!-- 项目的编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-
-				<version>3.5.1</version>  
-
+				<version>3.5.1</version>
 				<configuration>
-
+					<!-- 源文件和目标文件都使用java8 -->
 					<source>1.8</source>
-
 					<target>1.8</target>
-
-					<encoding>UTF-8</encoding>
-
+				</configuration>
+			</plugin>
+			<!-- web应用的服务器jetty或者使用tomcat也可以 -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.7.v20160115</version>
+				<configuration>
+					<httpConnector>
+						<!-- 端口号 -->
+						<port>80</port>
+						<!-- 访问路径 -->
+						<host>localhost</host>
+					</httpConnector>
+					<!-- 间隔扫描时间 -->
+					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
 
 			</plugin>
-
 		</plugins>
 
 	</build>
 ```
-
-
 
 ```xml
 
@@ -426,90 +426,43 @@ Window –showview –other
 
 
 >   右键项目—maven—update project
+>
+>   ![1573810480837](media/1573810480837.png)
 
-1. 使用pom.xml 加入struts2 需要的相关jar，向pom.xml中添加依赖
+7.使用pom.xml 加入spring-webmvc 需要的相关jar，向pom.xml中添加依赖
 
-   ​	
+​	
 
-   ```xml
-   <dependencies>
-     	<dependency>
-     		<groupId>org.apache.struts</groupId>
-     		<artifactId>struts2-core</artifactId>
-     		<version>2.3.24</version>
-     	</dependency>
-     </dependencies>
-   ```
-
-   ```xml
-   
-   ```
-
-   
+```xml
+ <dependencies>
+   <dependency>
+  	<groupId>org.springframework</groupId>
+  	<artifactId>spring-webmvc</artifactId>
+  	<version>5.1.5.RELEASE</version>
+  </dependency>
+   </dependencies>
+```
 
 
 
+8.开发controller
+
+![1573808870355](media/1573808870355.png)
+
+9.开发jsp  
 
 
-添加完以后，项目目录出现
+![1573809500584](media/1573809500584.png)
 
-![](media/8f9c9d5cc03ae6b60be8ff71f25b73a8.png)
+10.启动jetty
 
-1.  开发action
-
-![](media/64bebf7d8914c75407004446d11d4bf2.png)
-
-1.  配置struts.xml文件
-
->   在src/main/resources 下加入struts.xml文件。如下
-
-![](media/88132f25a3184ab6106f97858b6d49a9.png)
-
-1.  开发jsp  
-    
-
-    ![](media/1e64a21e7104779dbd97919ad859fec2.png)
-
-2.  由于 Java 8和tomcat6 不兼容。所以项目要用tomcat 7
-    或更高版本来运行。需要单独加入tomcat7 或更高的 插件.否则会报下面的错误
-
-![](media/0594323a90b2cadcc7959a719e426c31.png)
-
->   解决办法：在pom.xml中加入
-
-| \<plugin\> \<groupId\>org.apache.tomcat.maven\</groupId\> \<artifactId\>tomcat7-*maven*-*plugin*\</artifactId\> \<version\>2.2\</version\> \</plugin\> |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+![1573809613475](media/1573809613475.png)
 
 
-1.  运行tomcat
 
->   右键项目 run as
+![1573809679294](media/1573809679294.png)
 
-![](media/56be177135ec710aea339fdaa96df208.png)
+11.启动成功后，在地址栏输入
 
-![](media/dd9178a1ba4e5500380c54bab5333547.png)
+>   http://localhost/hello
 
-1.  启动成功后，在地址栏输入
-
->   http://localhost:8080/maven/helloMaven
-
-1.10 eclipse 下maven 命令的使用
---------------------------
-
-![](media/9efa916b3553a75784e0e8db60210158.png)
-
-Run as 采用mvn 的命令运行 。debug as 采用mvndebug 的命令运行
-
-Maven clean 清楚target 目录
-
-Maven test 运行单元测试
-
-Maven intstall 将项目打包发布到本地仓库
-
-Maven deploy将项目打包发布到远程仓库
-
-Maven build 运行之前操作过的命令
-
-Maven build …手动输入命令 ，如下
-
-![](media/882ee8b1ed8c31ac01b47a7b959a875f.png)
