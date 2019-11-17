@@ -132,27 +132,37 @@ JUnit是一个Java编程语言编写的单元测试框架。
 
 编写如下代码并单击右键使用junit 运行。
 
-![](media/6e35dffd8f559d46c5ba8e90c69a6eba.png)
+![](media/6e35dffd8f559d46c5ba8e90c69a6eba.png) 
+
+
 
 运行结果如下，表示运行成功。
 
-![](media/d8bdc30850ce4bbea725d24d752d0645.png)
+![](media/d8bdc30850ce4bbea725d24d752d0645.png) 
 
 在上述的代码基础之上增加代码
 
->   \@Test
+>   ```java
+>    @Test
+>   
+>    public void  testFault() {
+>   
+>    int  array[] = {1,2,3};
+>   
+>    System.out.println("这里是测试" + array[3]);
+>   
+>    }
+>   
+>   
+>   ```
+>
+>   并运行结果如下：
+>
+>   
 
->   **public void** testFault() {
+![](media/3c4ad8a648ef60fff9d05c7848b1ff45.png) 
 
->   **int** array[] = {1,2,3};
 
->   System.*out*.println("这里是测试" + array[3]);
-
->   }
-
-并运行结果如下：
-
-![](media/3c4ad8a648ef60fff9d05c7848b1ff45.png)
 
 18.4 jUnit常用注解
 -------------
@@ -265,15 +275,21 @@ public class AssertionsTest {
 
 >   pom.xml 中引入依赖，如下所示：
 
-\<dependency\>
 
-\<groupId\>org.springframework\</groupId\>
 
-\<artifactId\>spring-test\</artifactId\>
+```xml
+<dependency>
 
-\<version\>4.3.10.RELEASE\</version\>
+<groupId>org.springframework</groupId>
 
-\</dependency\>
+<artifactId>spring-test</artifactId>
+
+<version>4.3.10.RELEASE</version>
+
+</dependency>
+
+ 
+```
 
 ### 18.7.2 使用注解
 
@@ -283,7 +299,7 @@ public class AssertionsTest {
 
 -   ContextConfiguration
 
-![](media/f09b391380cc9b129b3b3849d017d4ad.png)
+![](media/f09b391380cc9b129b3b3849d017d4ad.png) 
 
 >   RunWith：
 

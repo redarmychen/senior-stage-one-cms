@@ -6,6 +6,8 @@
 
 ![](media/4381f9b0cf0ba7f97c311a6c78b2a842.png)
 
+
+
 >   功能主要包含如下:
 
 >   个人文章管理、发布文章。
@@ -23,59 +25,69 @@
 
 >   页面加载完成后立即初始化kindEitor 组件，代码如下所示：
 
->   KindEditor.ready(**function**(K) {
-
+>   ```javascript
+>   KindEditor.ready(function(K) {
+>   
 >   window.editor1 = K.create('textarea[name="content1"]', {
-
+>   
 >   //指定样式
-
+>   
 >   cssPath : '/resource/kindeditor/plugins/code/prettify.css',
-
+>   
 >   //指定文件管理器
-
+>   
 >   uploadJson : '/resource/kindeditor/jsp/upload_json.jsp',
-
+>   
 >   //文件显示
-
+>   
 >   fileManagerJson : '/resource/kindeditor/jsp/file_manager_json.jsp',
-
+>   
 >   //允许文件上传
-
->   allowFileManager : **true**,
-
+>   
+>   allowFileManager : true,
+>   
 >   //对象创建完成的回调函数
-
->   afterCreate : **function**() {
-
->   **var** self = **this**;
-
->   K.ctrl(document, 13, **function**() {
-
+>   
+>   afterCreate : function() {
+>   
+>   var self = this;
+>   
+>   K.ctrl(document, 13, function() {
+>   
 >   self.sync();
-
+>   
 >   document.forms['example'].submit();
-
+>   
 >   });
-
->   K.ctrl(self.edit.doc, 13, **function**() {
-
+>   
+>   K.ctrl(self.edit.doc, 13, function() {
+>   
 >   self.sync();
-
+>   
 >   document.forms['example'].submit();
-
+>   
 >   });
-
+>   
 >   }
-
+>   
 >   });
-
+>   
 >   prettyPrint();
-
+>   
 >   });
-
+>   ```
+>
+>   
+>
 >   文件上传前端代码直接使用如下格式即可：
 
->   \<input type=*"file"* class=*"form-control"* id=*"file"* name=*"file"*\>
+>   
+>
+>   ```html
+>   <input type=*"file" class=*"form-control" id="file"  name="file">
+>   ```
+>
+>   
 
 >   联动效果的实现
 
@@ -84,135 +96,149 @@
 >   异步加载实现频道列表下拉代码：
 
 >   //自动加载文章的栏目（频道）
+>
+>   
 
->   \$.ajax({
-
->   type:"get",//请求方式为get
-
->   [url:"/article/getAllChn",//](url:%22/article/getAllChn%22,//)获取数据的地址
-
->   success:**function**(list){ //成功后的回调函数
-
->   \$("\#channel").empty(); //清空下拉框中的数据
-
->   **for**(**var** i **in** list){ // 对获取到的数据进行遍历
-
->   \$("\#channel").append("\<option
->   value='"+list[i].id+"'\>"+list[i].name+"\</option\>") // 追加到下拉框中当中
-
->   }
-
->   }
-
->   })
-
+>   ```javascript
+>   //自动加载文章的栏目
+>   ```
+>    	 $.ajax({
+>   		type:"get",
+>   		url:"/article/getAllChn",
+>   		success:function(list){
+>   			$("#channel").empty();
+>   			for(var i in list){
+>   				if(${article.channelId}==list[i].id){
+>   					$("#channel").append("<option selected value='"+list[i].id+"'>"+list[i].name+"</option>")
+>   					
+>
+>   					// 频道的回显
+>   					 $("#category").empty();
+>   						//根据ID 获取栏目下的分类
+>   					 $.get("/article/getCatsByChn",{channelId:${article.channelId}},function(catlist){
+>   						
+>   						 for(var cati in catlist){
+>   						  	 if(catlist[cati].id==${article.categoryId}){
+>   								 $("#category").append("<option selected value='"+catlist[cati].id+"'>"+catlist[cati].name+"</option>")
+>   						 	 }else{
+>   						 		$("#category").append("<option value='"+catlist[cati].id+"'>"+catlist[cati].name+"</option>")
+>   						 	 }
+>   							 //处理回显
+>   							
+>   						 }
+>   						 
+>   					 })
+>
+>
+>   ​					
+>   ```javascript
+>   			}else{
+>   				$("#channel").append("<option value='"+list[i].id+"'>"+list[i].name+"</option>")
+>   			}
+>   			
+>   		}
+>   	}
+>   	
+>   }) 
+>   
+>   ```
 >   直接渲染频道列表下拉代码：
 
->   \<select class=*"custom-select custom-select-sm mb-3"* id=*"channel"*
->   name=*"channelId"*\>
-
->   \<option value=*"0"*\>请选择\</option\>
-
->   \<c:forEach items=*"*\${channels}*"* var=*"channel"*\>
-
->   \<option value=*"*\${channel.id}*"*\>\${channel.name}\</option\>
-
->   \</c:forEach\>
-
->   \</select\>
-
+>   ```html
+>          <div class="form-group row ">
+>   		  	<label for="channel">文章栏目</label>
+>   			<select class="custom-select custom-select-sm mb-3" id="channel"  name="channelId">
+>   				<option value="0">请选择</option>  
+>   				<c:forEach items="${channels}" var="channel">
+>   					<option value="${channel.id}" ${channel.id==article.channelId?"selected":""} >   ${channel.name}</option> 
+>   				</c:forEach>
+>   			</select>
+>   		</div>
+>   ```
+>
 >   频道与分类实现联动效果：
 
 >   为频道组件绑定change事件，当频道发生改变以后，利用ajax技术获取分类列表，然后清楚分类列表中的内容，最后将重新获取到的分类列表追加到分类列表组件当中。实现的代码如下：
 
->   //绑定change事件
-
->   \$("\#channel").change(**function**(){
-
->   //先清空原有的栏目下的分类
-
->   \$("\#category").empty();//清空分类列表组件内容
-
->   **var** cid =\$(**this**).val();//获取当前的下拉框的id 获取改变后的频道id
-
->   //根据ID 获取栏目下的分类
-
->   \$.get("/article/listCatByChnl",{chnlId:cid},**function**(resultData){
-
->   **if**(resultData.result==1){//后台数据处理成功
-
->   **var** list = resultData.data; //得到分类列表
-
->   **for**(**var** i **in** list){ //遍历分类列表
-
->   **//将分类列表追加到分类组件当中**
-
->   \$("\#category").append("\<option
->   value='"+list[i].id+"'\>"+list[i].name+"\</option\>")
-
->   }
-
->   }
-
->   })
-
->   })
-
+>   ```javascript
+>      /**
+>   	*  函数用于根据频道内容获取分类列表内容
+>   	*
+>   	*/
+>   	function changeChannel(){
+>   			
+>   
+>   		 //先清空原有的栏目下的分类
+>   		 $("#category").empty();
+>   		var cid =$("#channel").val();//获取当前的下拉框的id
+>   		//根据ID 获取栏目下的分类
+>   	 	$.get("/article/listCatByChnl",{chnlId:cid},function(resultData){
+>   		if(resultData.result==1){ //后端处理正确
+>   			var list = resultData.data; //得到分类列表的数据
+>   			//遍历分类列表数据
+>   			 for(var i in list){
+>   				 //该分类就是文章的分类
+>   				if(list[i].id==${article.categoryId}){
+>   					// 该项处于选中状态
+>   			  		$("#category").append("<option value='"+list[i].id 
+>   			  				      +"' selected >"+list[i].name+"</option>")
+>   				}else{
+>   					//
+>   					$("#category").append("<option value='"+list[i].id+"'>"
+>   							        +list[i].name+"</option>")
+>   				}//end if
+>   			 }//end for
+>   		}//end if 
+>   	 })// end $.get(
+>   
+>   
+>   }//end function
+>   
+>   
+>   
+>   
+>   ```
+>
 >   发布文章内容：
-
->   **function** publish(){
-
->   //序列化表单数据带文件
-
->   **var** formData = **new** FormData(\$( "\#form" )[0]);
-
->   //改变formData的值
-
->   //editor1.html() 是富文本的内容
-
->   formData.set("content",editor1.html());
-
->   \$.ajax({
-
->   type:"post",
-
->   data:formData,
-
->   // 告诉jQuery不要去处理发送的数据
-
->   processData : **false**,
-
->   // 告诉jQuery不要去设置Content-Type请求头
-
->   contentType : **false**,
-
->   url:"/article/add",
-
->   success:**function**(obj){
-
->   **if**(obj){
-
->   alert("发布成功!")
-
->   // 发布成功后跳转到我的文章列表页面
-
->   \$('\#center').load("/user/myarticlelist");
-
->   }**else**{
-
->   alert("发布失败")
-
+>
+>   ```javascript
+>   function publish(){
+>   
+>   
+>   	//序列化表单数据带文件
+>   	 var formData = new FormData($( "#form" )[0]);
+>   	//改变formData的值
+>   	//editor1.html() 是富文本的内容
+>   	 formData.set("content",editor1.html());
+>   	
+>   	$.ajax({
+>   		type:"post",
+>   		data:formData,
+>   		// 告诉jQuery不要去处理发送的数据
+>   		processData : false,
+>   		// 告诉jQuery不要去设置Content-Type请求头
+>   		contentType : false,
+>   		url:"/article/update",
+>   		success:function(obj){
+>   			if(obj)
+>   		    {
+>   				alert("修改成功!")
+>   				// location="/article/listMyArticle";
+>   				$("#center").load("/user/myarticlelist")
+>   			}else{
+>   				alert("修改失败")
+>   			}
+>   			
+>   		}
+>   	})
 >   }
+>   
+>    
+>   ```
+>
+>   ### 15.2.3 后端
 
->   }
-
->   })
-
-
-
-### 15.2.3 后端
-
--   工具包依赖
+#### 工具包依赖
 
 >   项目pom.xml 文件中增加如下属性和依赖：
 
@@ -226,155 +252,172 @@
 
 >   \</properties\>
 
->   \<!-- 上传组件包 --\>
+>   
+>
+>   <!-- 上传组件包 -->
+>   <dependency>
+>   	<groupId>commons-fileupload</groupId>
+>   			<artifactId>commons-fileupload</artifactId>
+>   			<version>${commons-fileupload.version}</version>
+>   </dependency>
+>   <dependency>
+>   			<groupId>commons-io</groupId>
+>   			<artifactId>commons-io</artifactId>
+>   			<version>${commons-io.version}</version>
+>   </dependency>
+>
+>   ```xml
+>   
+>   ```
+>
+>   
 
->   \<dependency\>
+>   
 
->   \<groupId\>commons-*fileupload*\</groupId\>
+#### 配置文件
 
->   \<artifactId\>commons-*fileupload*\</artifactId\>
+>   spring-mvc.xml 文件需要配置如下内容，用于处理文件的上传
+>
+>   ```xml
+>   
+>   
+>       <!-- 上传下载配置 -->	
+>   	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+>   		<property name="defaultEncoding" value="utf-8"></property>
+>   		<property name="maxUploadSize" value="10485760000"></property>
+>   	</bean>
+>   ```
+>
+>   
 
->   \<version\>\${commons-fileupload.version}\</version\>
 
->   \</dependency\>
 
->   \<dependency\>
+#### 控制层
 
->   \<groupId\>commons-*io*\</groupId\>
+###### 进入发布页面
 
->   \<artifactId\>commons-*io*\</artifactId\>
+/**跳转到添加的页面
 
->   \<version\>\${commons-io.version}\</version\>
+* @param request
+ * @return
+ * */
 
->   \</dependency\>
+@RequestMapping(value = "add",method=RequestMethod.GET)
+public String add(HttpServletRequest request) {
+     List<Channel> allChnls = chanService.getAllChnls();
+     // 获取所有的频道
+    request.setAttribute("channels", allChnls);
+     return "article/publish";
 
--   配置文件
+```java
+}
 
->   spring-mvc.xml 文件需要配置如下内容，用于处理文件的上传。
+```
 
->   \<!-- 上传下载配置 --\>
+###### 获取文章频道列表
 
->   \<bean id=*"multipartResolver"*
->   class=*"org.springframework.web.multipart.commons.CommonsMultipartResolver"*\>
+>    
+>
+>   ```java
+>   /**
+>   
+>   - 获取所有的频道
+>   - @return
+>   
+>    */
+>   
+>    @RequestMapping("getAllChn")
+>   
+>    @ResponseBody
+>   
+>    public List<Channel> getAllChn() {
+>   
+>    List<Channel> channels = channelService.getChannels();
+>   
+>    return channels;
+>   
+>    }
+>   ```
 
->   \<property name=*"defaultEncoding"* value=*"utf-8"*\>\</property\>
 
->   \<property name=*"maxUploadSize"* value=*"10485760000"*\>\</property\>
 
->   \</bean\>
+###### 列表
 
--   控制层
-
-    -   进入发布页面
-
->   /\*\*
-
->   \* 跳转到添加的页面
-
->   \* **\@param** request
-
->   \* **\@return**
-
->   \*/
-
->   \@RequestMapping(value = "add",method=RequestMethod.*GET*)
-
->   **public** String add(HttpServletRequest request) {
-
->   **// 获取所有的频道**
-
->   List\<Channel\> allChnls = chanService.getAllChnls();
-
->   request.setAttribute("channels", allChnls);
-
->   **return** "article/publish";
-
->   }
-
--   获取文章频道列表
-
->   /\*\*
-
->   \* 获取所有的频道
-
->   \* **\@return**
-
->   \*/
-
->   \@RequestMapping("getAllChn")
-
->   \@ResponseBody
-
->   **public** List\<Channel\> getAllChn() {
-
->   List\<Channel\> channels = channelService.getChannels();
-
->   **return** channels;
-
->   }
-
--   获取文章分类列表
-
->   /\*\*
-
->   \* 根据频道获取相应的分类 用户发布文章或者修改文章的下拉框
-
->   \* **\@param** chnlId 频道id
-
->   \* **\@return**
-
->   \*/
-
->   \@RequestMapping(value="listCatByChnl",method=RequestMethod.*GET*)
-
->   \@ResponseBody
-
->   **public** ResultMsg getCatByChnl(**int** chnlId){
-
->   CmsAssertJson.*Assert*(chnlId\>0,"频道id必须大于0");
-
->   List\<Cat\> chnlList = catService.getListByChnlId(chnlId);
-
->   **return new** ResultMsg(1, "获取数据成功", chnlList);
-
->   }
-
--   发布文章请求
+>   ```java
+>   /**
+>   
+>   - 根据频道获取相应的分类 用户发布文章或者修改文章的下拉框
+>   - @param chnlId 频道id
+>   - @return
+>   
+>    */
+>   
+>    @RequestMapping(value="listCatByChnl",method=RequestMethod.*GET*)
+>   
+>    @ResponseBody
+>   
+>    public ResultMsg getCatByChnl(int chnlId){
+>   
+>    CmsAssertJson.*Assert*(chnlId>0,"频道id必须大于0");
+>   
+>    List<Cat> chnlList = catService.getListByChnlId(chnlId);
+>   
+>    return new ResultMsg(1, "获取数据成功", chnlList);
+>   
+>    }
+>   ```
+>
+>   
+>
+>   ##### 发布文章请求
+>
+>   
 
 >   发布文章需要处理上传文件和文章的发布用户。
 
 >   处理文件上传的代码为：
+>
+>   
 
->   /\*\*
-
->   \* 处理文章的附件上传
-
->   \* **\@param** file
-
->   \* **\@param** article
-
->   \* **\@throws** IOException
-
->   \* **\@throws** IllegalStateException
-
->   \*/
-
->   **private void** processFile(MultipartFile file,Article article)
-
->   **throws** IllegalStateException, IOException {
-
->   // 判断原文件的合法性
-
->   **if**(file.isEmpty()\|\|"".equals(file.getOriginalFilename())
-
->   \|\| file.getOriginalFilename().lastIndexOf('.')\<0 ) {
-
->   article.setPicture("");
-
->   **return**;
-
+>   ```java
+>   /**
+>   
+>   - 处理每一个图片集合中的文件
+>     - @param file
+>     - @param article
+>     - @throws IllegalStateException
+>     - @throws IOException
+>       */
+>       private String processFile(MultipartFile file) throws IllegalStateException, IOException {
+>   
+>   
+>   	// 原来的文件名称
+>   	System.out.println("file.isEmpty() :" + file.isEmpty()  );
+>   	System.out.println("file.name :" + file.getOriginalFilename());
+>   	
+>   	if(file.isEmpty()||"".equals(file.getOriginalFilename()) || file.getOriginalFilename().lastIndexOf('.')<0 ) {
+>   		return "";
+>   	}
+>   		
+>   	String originName = file.getOriginalFilename();
+>   	String suffixName = originName.substring(originName.lastIndexOf('.'));
+>   	SimpleDateFormat sdf=  new SimpleDateFormat("yyyyMMdd");
+>   	String path = "d:/pic/" + sdf.format(new Date());
+>   	File pathFile = new File(path);
+>   	if(!pathFile.exists()) {
+>   		pathFile.mkdir();
+>   	}
+>   	String destFileName = 		path + "/" +  UUID.randomUUID().toString() + suffixName;
+>   	File distFile = new File( destFileName);
+>   	file.transferTo(distFile);//文件另存到这个目录下边
+>   	return destFileName.substring(7);
+>   
+>   
 >   }
-
+>   
+>    
+>   ```
+>
 >   //获取原文件名称
 
 >   String originName = file.getOriginalFilename();
@@ -382,6 +425,8 @@
 >   //获取扩展名
 
 >   String suffixName = originName.substring(originName.lastIndexOf('.'));
+>
+>   
 
 >   //根据日期获取存放文件的相对路径名
 
@@ -415,67 +460,70 @@
 >   article.setPicture(destFileName.substring(uploadPath.length()+1));
 
 >   }
+>
+>   
 
 >   处理文章内容上传部分需要考虑从session获取当前用户，当前用户的id存入文章对象的作者字段中。然后调用服务层发布文章成功，代码为：
 
->   /\*\*
+>    
+>
+>   ```java
+>   /**
+>   
+>   - 处理发布文章请求
+>   - @param request
+>   - @param article
+>   - @param file
+>   - @return
+>   - @throws IllegalStateException
+>   - @throws IOException
+>   
+>    */
+>   
+>    @RequestMapping(value = "add",method=RequestMethod.*POST*)
+>   
+>    public boolean add(HttpServletRequest request,Article article,
+>   
+>    MultipartFile file) throws IllegalStateException, IOException {
+>   
+>    //处理标题图片
+>   
+>    processFile(file,article);
+>   
+>    //获取作者
+>   
+>    User loginUser =
+>    (User)request.getSession().getAttribute(ConstClass.*SESSION_USER_KEY*);
+>   
+>    article.setUserId(loginUser.getId());
+>   
+>    //发布文章
+>   
+>    return articleService.add(article)>0;
+>   
+>    }
+>   ```
+>
+>   
+>
 
->   \* 处理发布文章请求
+#### 服务层
 
->   \* **\@param** request
+###### 获取频道
 
->   \* **\@param** article
+>   ​		略
 
->   \* **\@param** file
+###### 获取分类
 
->   \* **\@return**
+>   ​		略
 
->   \* **\@throws** IllegalStateException
+###### 发布文章
 
->   \* **\@throws** IOException
+>   ​		略
 
->   \*/
+##### 数据层
 
->   \@RequestMapping(value = "add",method=RequestMethod.*POST*)
-
->   **public boolean** add(HttpServletRequest request,Article article,
-
->   MultipartFile file) **throws** IllegalStateException, IOException {
-
->   //处理标题图片
-
->   processFile(file,article);
-
->   //获取作者
-
->   User loginUser =
->   (User)request.getSession().getAttribute(ConstClass.*SESSION_USER_KEY*);
-
->   article.setUserId(loginUser.getId());
-
->   //发布文章
-
->   **return** articleService.add(article)\>0;
-
->   }
-
--   服务层
-
-    -   获取频道
-
->   略
-
--   获取分类
-
->   略
-
--   发布文章
-
->   略
-
--   数据层
-
-    -   获取频道
+###### 获取频道
 
 >   \@Select("select \* from cms_channel order by id")
 
@@ -483,7 +531,7 @@
 
 >   List\<Channel\> getChannels();
 
--   获取分类
+###### 获取分类
 
 >   /\*\*
 
@@ -501,11 +549,13 @@
 
 >   List\<Category\> getCategoryByChId(Integer cid);
 
--   发布文章
+###### 发布文章
 
 >   发布文章中发布时间直接使用书库服务器的系统时间；
 
 >   发布文章要求返回自动生成的主键id；
+>
+>   #### 数据层
 
 >   具体的数据层代码为：
 
@@ -536,7 +586,7 @@
 
 >   实现效果如图所示：
 
-![](media/aed71b30a1e19eec33893df6ace1e378.png)
+![](media/aed71b30a1e19eec33893df6ace1e378.png) 
 
 ### 15.3.1 前端
 
@@ -583,9 +633,11 @@
 
 ### 15.3.2 后端
 
--   控制层
+#### 	控制层
 
-    -   文章列表
+
+
+文章列表
 
 >   我的文章列表部分需要先获取当前用户id，然后根据用户id查询相应的文章列表。页码参数默认值为1。
 
@@ -675,9 +727,9 @@
 
 >   }
 
--   服务层
+#### 服务层
 
-    -   获取文章列表
+-   获取文章列表
 
 >   /\*\*
 
@@ -738,9 +790,9 @@
 
 >   }
 
--   数据层
+#### 数据层
 
-    -   我的文章列表
+-   我的文章列表
 
 >   \<!-- 根据用户id查找文章 根据发表的时间倒叙排列--\>
 
@@ -941,7 +993,7 @@
 
 ### 15.4.2 后端
 
--   控制层
+#### 控制层
 
 >   进入修改页面
 
@@ -1054,7 +1106,7 @@
 
 >   }
 
--   服务层
+#### 服务层
 
 >   /\*\*
 
@@ -1086,7 +1138,7 @@
 
 >   }
 
--   数据层
+#### 数据层
 
 >   代码参考如下：
 

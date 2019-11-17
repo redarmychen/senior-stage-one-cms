@@ -5,7 +5,7 @@
 
 实现效果要求：
 
-![](media/0afedd05cb5c4549d2eb631c5e34e5a6.png)
+![](media/0afedd05cb5c4549d2eb631c5e34e5a6.png) 
 
 14.1.1 前端
 ----
@@ -45,7 +45,7 @@
 
 ### 14.1.2.1 控制层
 
--   进入注册页面
+##### 进入注册页面
 
 >   \@GetMapping("register") // 只接受get的请求
 
@@ -55,23 +55,27 @@
 
 }
 
--   注册请求
 
-![](media/4313ecd03b6778dc2c2efa28a678097b.png)
 
--   同名用户校验
+##### 注册请求 
 
-![](media/2bd439fbb5fff1eb7f7b6bd72c7ca15a.png)
+![](media/4313ecd03b6778dc2c2efa28a678097b.png)   
+
+##### 同名用户校验
+
+
+
+![](media/2bd439fbb5fff1eb7f7b6bd72c7ca15a.png)  
 
 ### 14.1.2.2  服务层
 
 -   注册
 
-![](media/ac1a50736a55d7a3dd1b2b7dd241e0b8.png)
+![](media/ac1a50736a55d7a3dd1b2b7dd241e0b8.png) 
 
 -   判断用户是否存在
 
-![](media/03b47cc05239d509d43579ee06a2da29.png)
+![](media/03b47cc05239d509d43579ee06a2da29.png) 
 
 ### 14.1.2.3 工具类
 
@@ -79,21 +83,21 @@
 
 >   使用MD5加密引入工具包即可，在此基础之上再封装。Maven工程引入工具包：
 
-![](media/5e725fcf69852788f29b55ab854e39bf.png)
+![](media/5e725fcf69852788f29b55ab854e39bf.png) 
 
--   MD5加盐加密
+-   MD5加盐加密 
 
-![](media/863b8faf95c82fef225659aea2ef185f.png)
+![](media/863b8faf95c82fef225659aea2ef185f.png) 
 
 ### 14.1.2.4 数据层
 
 -   根据名称查找用户
 
-![](media/8979255035fa9c88358440ae8fc18f18.png)
+ ![](media/8979255035fa9c88358440ae8fc18f18.png)
 
 -   添加用户
 
-![](media/d632215492f941aa25a1574e48b8175f.png)
+![](media/d632215492f941aa25a1574e48b8175f.png) 
 
 14.2 登录
 ====
@@ -103,7 +107,7 @@
 
 实现效果如图：
 
-![](media/cf006cc5ef09b7b7941f639e3cd0c345.png)
+![](media/cf006cc5ef09b7b7941f639e3cd0c345.png) 
 
 实现说明：
 
@@ -158,7 +162,7 @@
 
 >   否则继续显示登录页面，并且返回错误信息。代码如下：
 
-![](media/4dbd46391425d3d99e535a4e117ca673.png)
+![](media/4dbd46391425d3d99e535a4e117ca673.png) 
 
 >   }
 >
@@ -166,13 +170,15 @@
 
 ### 14.2.2.2  服务层
 
-| **public** User login(User user) { |
-|------------------------------------|
+​     public User login(User user) {
+
+​    }
+
 
 
 >   //根据用户名查找用户，返回的用户对象密码密文与与参数中的用户明文加密后的结果进行对比，如果一样则返回用户对象，意为登录成功，否则认为用户不存在，登录失败。
 
-![](media/e3c9e4585cf455553dd3be9e160107df.png)
+![](media/e3c9e4585cf455553dd3be9e160107df.png) 
 
 >   }
 
@@ -180,7 +186,7 @@
 
 ### 14.2.2.3  数据层
 
-![](media/da82bf2a3fd59d5a97c19d4766bca910.png)
+![](media/da82bf2a3fd59d5a97c19d4766bca910.png) 
 
 14.3 拦截器
 ======

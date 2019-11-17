@@ -13,6 +13,7 @@ Maven项目自动化部署
 
 ### 19.2.1 配置pom.xml文件
 
+```xml
 <scm>
       <url>http://www.git.com</url>
       <connection>scm:git:http://localhost:8080/git/jrepo/trunk/
@@ -45,6 +46,9 @@ Maven项目自动化部署
    </build>
 
 
+
+### 
+```
 
 ###  19.2.2  Maven Release 插件
 
@@ -96,7 +100,7 @@ C:\MVN\bus-core-api>mvn release:prepare
 
 Maven 开始构建整个工程。构建成功后即可运行如下 mvn 命令。
 
-```
+```c
 C:\MVN\bus-core-api>mvn release:perform
 ```
 
@@ -112,14 +116,17 @@ C:\MVN\bus-core-api>mvn release:perform
 
 首先，我们需要先打开 Tomcat 的 manager 功能，找到 conf 文件夹下的 tomcat-users.xml文件中的 <tomcat-users>标签，然后添加如下内容（可以直接在其文档注释部分找到对应的模版，然后进行修改）：
 
-    <role rolename="manager-gui"/> 
-    <role rolename="manager-script"/>
-    <role rolename="manager-jmx"/>
-    <role rolename="manager-status"/>
-    <user password="1234" username="admin"
-    roles="manager-gui,manager-script,manager-jmx,manager-status" />
+```xml
+<role rolename="manager-gui"/> 
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<user password="1234" username="admin"
+roles="manager-gui,manager-script,manager-jmx,manager-status" />
+```
 
  
+
 
 
 配置好之后，ctrl+s 保存文件。紧接着，双击 tomcat 解压包中 bin 目录下的 startup.bat 命令进行启动Tomcat服务器。在浏览器地址来中进行访问http://localhost:8080/manager，
@@ -132,11 +139,13 @@ C:\MVN\bus-core-api>mvn release:perform
 
 注意，这里配置的 username 和 password 一定要和 tomcat 中的 tomcat_user.xml 中一致，否则关联不起来。
 
-    <server> 
-        <id>tomcat9</id>
-        <username>admin</username>
-        <password>1234</password>
-    </server>
+```xml
+<server> 
+    <id>tomcat9</id>
+    <username>admin</username>
+    <password>1234</password>
+</server>
+```
 
 
 
@@ -144,20 +153,23 @@ C:\MVN\bus-core-api>mvn release:perform
 
 最后，回到我们的 Eclipse 中，然后在 pom.xml 文件中，在原来 tomcat7 插件的基础上，往 <project> 下添加 <configuration> 子标签进行配置即可。
 
-    <build>
-    		<plugins>
-    			<plugin>
-    				<groupId>org.apache.maven.plugins</groupId>
-    				<artifactId>maven-compiler-plugin</artifactId>
-    				<version>3.3</version>
-    				<configuration>
-    					<source>1.8</source>
-    					<target>1.8</target>
-    				</configuration>
-    			</plugin>
+~~~xml
 
 
-​     
+```
+<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+
     			<plugin>
     				<groupId>org.apache.tomcat.maven</groupId>
     				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -172,9 +184,13 @@ C:\MVN\bus-core-api>mvn release:perform
     					<path>/webapp</path>
     				</configuration>
     			</plugin>
-     
-    		</plugins>
-    	</build>
+
+		</plugins>
+	</build>
+
+
+
+~~~
 
 
 
