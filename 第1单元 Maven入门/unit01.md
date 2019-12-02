@@ -219,7 +219,25 @@ jar 到本地仓库中。本地仓库可以理解为缓存.
 
 ### 1.6.3 Maven 常用命令
 
-依据上述目录规范创建一个web项目，
+创建项目
+
+​    mvn archetype:generate -DgroupId=org.seckill -DartifactId=seckill -DarchetypeArtifactId=maven-archetype-webapp
+
+项目转换成
+
+​    mvn eclipse:eclipse
+
+
+
+eclipse 中项目转换成Maven工程
+
+![1575247613163](unit01.assets/1575247613163.png) 
+
+
+
+
+
+依据上述目录规范创建一个web项目
 
 #### compile
 
@@ -309,11 +327,11 @@ Eclipse 中已经集成了maven ,所以不需要单独安装了。但是需要�
 
 Window –showview –other
 
-![](media/9c2f947bf20a9de1ea828f0b98e1cdc4.png)
+![](media/9c2f947bf20a9de1ea828f0b98e1cdc4.png) 
 
 ![](media/3cae9519a4020270cef2c563b9e228cb.png)
 
-![](media/16bab288e2197ab946a3f2fa6740b61d.png)
+![](media/16bab288e2197ab946a3f2fa6740b61d.png) 
 
 ### 1.8.5 Maven坐标定义
 
@@ -350,15 +368,15 @@ Window –showview –other
 
 1.  新建项目 other ，创建maven project
 
-![](media/d81d9d37fd0dab355e9f763ca9cdb288.png)
+![](media/d81d9d37fd0dab355e9f763ca9cdb288.png) 
 
 2.跳过模板选择如下图
 
-![](media/f175973361561938d8415fd9515fba15.png)
+![](media/f175973361561938d8415fd9515fba15.png) 
 
 3.定义坐标
 
-![1573810154034](media/1573810154034.png)
+![1573810154034](media/1573810154034.png) 
 
 4.点finish后形成的结果如下图
 
@@ -369,11 +387,11 @@ Window –showview –other
 >   Maven 默认不会创建web.xml文件，需要手工创建，注意需要在WEB-INF 下创建
 >   web.xml ,如下图
 
-![](media/d457f15adc1d1777f35492dec70a56cd.png)
+![](media/d457f15adc1d1777f35492dec70a56cd.png) 
 
 也可以用eclipse自动生成 .如下:
 
-![](media/b03f1105c42c1504d4322fc898d7f527.png)
+![](media/b03f1105c42c1504d4322fc898d7f527.png) 
 
 6.处理设置项目的编译版本
 
@@ -427,7 +445,7 @@ Window –showview –other
 
 >   右键项目—maven—update project
 >
->   ![1573810480837](media/1573810480837.png)
+>   ![1573810480837](media/1573810480837.png) 
 
 7.使用pom.xml 加入spring-webmvc 需要的相关jar，向pom.xml中添加依赖
 
@@ -447,20 +465,20 @@ Window –showview –other
 
 8.开发controller
 
-![1573808870355](media/1573808870355.png)
+![1573808870355](media/1573808870355.png) 
 
 9.开发jsp  
 
 
-![1573809500584](media/1573809500584.png)
+![1573809500584](media/1573809500584.png) 
 
 10.启动jetty
 
-![1573809613475](media/1573809613475.png)
+![1573809613475](media/1573809613475.png) 
 
 
 
-![1573809679294](media/1573809679294.png)
+![1573809679294](media/1573809679294.png) 
 
 11.启动成功后，在地址栏输入
 
