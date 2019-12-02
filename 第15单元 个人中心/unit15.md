@@ -1192,7 +1192,7 @@ public String add(HttpServletRequest request) {
 
    
 
-## 15.6 作业
+## 15.6 课后作业
 
 1. 发布文章
 2. 修改文章
