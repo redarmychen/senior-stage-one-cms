@@ -138,7 +138,7 @@
 8.6 List
 ----
 
-### 8.7 Vector
+## 8.7 Vector
 
 >   Vector与ArrayList一样，都是通过数组实现的，不同的是它支持线程的同步，即某一时刻只有一个线程能够写Vector，避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此，访问它比访问ArrayList慢。主要用在事先不知道数组的大小，以及需要频繁地进行查找，插入，删除工作
 
@@ -216,7 +216,7 @@ vec.get(int index)
 >   vec.setSize(int newSize)   
 >   设置此向量的大小。
 
-### 8.7 ArrayList
+## 8.7 ArrayList
 
 a.
 当操作是在一列数据的后面添加数据而不是在前面或者中间，并需要随机地访问其中的元素时，使用ArrayList性能比较好。   
@@ -234,9 +234,11 @@ public ArrayList(Collection c); 
 public ArrayList(int n);   
 用指定n的大小来初始化内部的数组.
 
-![](media/d73b2b0859146db92579fada04f456d7.png)
+![](media/d73b2b0859146db92579fada04f456d7.png) 
 
-![](media/c2e13be7b1ca76f77e229d71032f9430.png)
+
+
+![](media/c2e13be7b1ca76f77e229d71032f9430.png) 
 
 -   **ArrayList的增加**
 
@@ -282,7 +284,7 @@ int toIndex) 移除列表中索引在 fromIndex（包括）和 toIndex（不
 
 -   **LinkedList**
 
-![](media/715e8d1636e8ae253b24cc07b8881e8b.png)
+![](media/715e8d1636e8ae253b24cc07b8881e8b.png) 
 
 | LinkedList：                                                                                                                                                                                                                                                                                                                                                                                 |
 | 　　a. 当对一列数据的前面或者中间执行添加或者删除操作时，并且按照顺序访问其中的元素时，要使用LinkedList。                                                                                                                                                                                                                                                                                    |
@@ -405,9 +407,9 @@ System.out.println("队列第一个元素-------\>"+queue.element()); //
 
 
 
-### 8.8 LinkedList
+## 8.8 LinkedList
 
-![](media/715e8d1636e8ae253b24cc07b8881e8b.png)
+![](media/715e8d1636e8ae253b24cc07b8881e8b.png) 
 
 | LinkedList：                                                                                                                                                                                                                                                                                                                                                                                 |
 | 　　a. 当对一列数据的前面或者中间执行添加或者删除操作时，并且按照顺序访问其中的元素时，要使用LinkedList。                                                                                                                                                                                                                                                                                    |
@@ -530,7 +532,7 @@ System.out.println("队列第一个元素-------\>"+queue.element()); //
 
 
 
-### 8.9 Map
+## 8.9 Map
 
 -   **HashMap**  
     a. 采用**数组方式存储key-value**构成的Node对象，无容量限制；   
@@ -551,13 +553,31 @@ System.out.println("队列第一个元素-------\>"+queue.element()); //
     b. 是非线程安全的；
 -   
 
-### 8.9 Set
+## 8.9 Set
 
--   **HashSet： **  
-    a. 基于HashMap实现，无容量限制；   
-    b. 是**非线程安全**的；   
-    c. **不保证数据的有序**；
+- **HashSet： **  
+  a. 基于HashMap实现，无容量限制；   
+  b. 是**非线程安全**的；   
+  c. **不保证数据的有序**；
 
--   **TreeSet**  
-    a. 基于TreeMap实现的，支持排序；   
-    b. 是非线程安全的；
+- **TreeSet**  
+  a. 基于TreeMap实现的，支持排序；   
+  b. 是非线程安全的；
+
+  
+
+# 8.10  课堂小节
+
+ 	1. 如何查看源代码
+ 	2. 讲述常用集合类和接口之间的关系
+ 	3. 介绍掌握常用的存储方式
+ 	4. 如何分析常用集合类的线程安全、效率等特性等
+
+# 8.11  课后作业
+
+       1.  分析Hashtable源码 包含扩容机制  线程安全等
+       2.  分析ConcurrentHashMap源码，如何保证线程安全和效率的
+
+
+
+​	

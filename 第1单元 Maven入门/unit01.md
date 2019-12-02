@@ -466,3 +466,19 @@ Window –showview –other
 
 >   http://localhost/hello
 
+
+
+
+
+## 1.10 课堂小结
+
+ 	1.   Maven介绍
+ 	2.   Maven的安装，配置，常用命令；
+ 	3.   Eclipse的Maven插件介绍、配置；
+ 	4.   Eclipse中来执行maven命令；
+
+## 1.11 课后作业
+
+ 	1. 安装maven
+ 	2. eclipse 与Maven集成
+ 	3. 构建一个Maven 的web 程序
