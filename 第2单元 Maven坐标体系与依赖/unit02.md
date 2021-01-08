@@ -90,25 +90,23 @@
 
 ![](media/2148ca36850f6538fc43e1fd1e2728a4.png) 
 
-  
-
 ### 2.3.2 查找坐标
 
 如果不知道依赖的坐标可以通过以下方式:
 
 1.  在互联网<http://www.mvnrepository.com/>
 
-![](media/b4dc74947dd27d3681c1abcdc64a1af5.png)   
+![](media/b4dc74947dd27d3681c1abcdc64a1af5.png) 
 
-![](media/740c9ce7513d9f042fb638fc59e1f728.png)  
+![](media/740c9ce7513d9f042fb638fc59e1f728.png) 
 
 ### 2.3.3 依赖范围
 
-传统的eclipse 构建项目过程如下
 
-Compile: 编译 、测试、运行、打包 如spring 核心包 默认级别
 
-Provided :编译、测试 需要；运行 、打包不需要 。如servlet-api.jar
+Compile: 编译 、测试、运行、打包    如spring 核心包 默认级别
+
+Provided :编译、测试 需要；运行 、打包不需要 。如 servlet_api.jar
 
 Runtime: 编译不需要，测试、运行、打包需要 如数据库驱动包，编译时如果没有提供该
 jar 包，程序也不会报错。
@@ -117,6 +115,16 @@ Test：编译，测试需要，运行，打包不需要 junit
 
 system:系统范围，与provided类似，只是标记为该scope的依赖包需要明确指定基于文件系统的jar包路径。因为需要通过systemPath指定本地jar文件路径，所以该scope是不推荐的
 
+
+
+| 依赖范围         | 编译 | 测试 | 运行时 | 举例                        |
+| ---------------- | ---- | ---- | ------ | --------------------------- |
+| compile （默认） | Y    | Y    | Y      | spring-context.jar          |
+| provided         | Y    | Y    |        | servlet-api.jar             |
+| runtime          |      | Y    | Y      | JDBC驱动                    |
+| test             | Y    | Y    |        | junit.jar                   |
+| system           | Y    | Y    |        | 本地的，Maven仓库之外的类库 |
+
 ### 2.3.4 依赖传递
 
 在pom.xml 配置只spring-webmvc ，那么和spring-webmvc
@@ -124,13 +132,9 @@ system:系统范围，与provided类似，只是标记为该scope的依赖包需
 
 ![](media/8fb484ae5c3ca337f565b26a1ee50152.png) 
 
-  
-
 通过pom.xml中的下列操作  
 
 ![](media/e7087d89188edc200844ae02f815fe3a.png) 
-
- 
 
 2.4 Jar 包冲突的解决办法
 ---------------------
@@ -180,8 +184,6 @@ Analyzer分析冲突的jar包，然后在对应标红版本的jar包上面点击
 
 ![](media/ad3c41afdac17d2ce3d66f1a53c7070a.png) 
 
- 
-
 **案例**:
 
 | 配置spring-context(4.3.13)的jar包依赖 配置spring-struts 的jar（3.0.5）包依赖 通过排除的方法,排除3.0.5版本的spring-beans |
@@ -193,7 +195,7 @@ Analyzer分析冲突的jar包，然后在对应标红版本的jar包上面点击
 
 ### 2.5.1 仓库之间工作流程
 
-![](media/74ad5200b3f613874e6ace05eb5ae067.png)   
+![](media/74ad5200b3f613874e6ace05eb5ae067.png) 
 
 ### 2.5.2 本地仓库
 
@@ -204,8 +206,6 @@ Analyzer分析冲突的jar包，然后在对应标红版本的jar包上面点击
 \${user.home}/.m2/repository \${user.home}代表为当前windows用户
 
 ![](media/9465c837fbfaa60313f5e4e4a688c350.png) 
-
- 
 
 ### 2.5.3 远程仓库
 
@@ -222,28 +222,10 @@ Analyzer分析冲突的jar包，然后在对应标红版本的jar包上面点击
 
 ### 2.5.5 配置本地仓库地址
 
- ![](media/dc35f95214d9559dee9d011d98ea81e7.png) 
-
-
+ ![](media/dc35f95214d9559dee9d011d98ea81e7.png)
 
 ![](media/d3c07ce25bb14c96766a864a671cc413.png) 
 
 在maven 的安装路径的 conf 下设置settings.xml,如上图
-
-
-
-## 2.6 课堂小结
-
-1. 五维坐标；
-2. 依赖范围，传递，归类依赖，冲突调解，依赖排除；
-3. 仓库；
-
-## 2.7 课后作业
-
-1. 修改maven 的本地仓库地址
-
-2. 引入SringMeb5.1.5  和 springCore4.3.16 解决冲突 
-
-   
 
 

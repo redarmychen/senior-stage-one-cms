@@ -115,7 +115,7 @@ Clean生命周期一共包含了三个阶段：
 
 - 此外，Maven的插件机制是完全依赖Maven的生命周期的，因此理解生命周期至关重要。
 
-### 4.2.3 Sit生命周期：生成项目站点
+### 4.2.3 Site生命周期：生成项目站点
 
 -   这里经常用到的是site阶段和site-deploy阶段，用以生成和发布Maven站点，这可是Maven相当强大的功能
 
@@ -123,6 +123,59 @@ Clean生命周期一共包含了三个阶段：
 
 | pre-site 执行一些需要在生成站点文档之前完成的工作 site 生成项目的站点文档 post-site 执行一些需要在生成站点文档之后完成的工作，并且为部署做准备 site-deploy 将生成的站点文档部署到特定的服务器上 |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+<bulid>
+
+  <plugins>
+
+<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+
+</plugins>
+
+</bulid>
+
+
+
+
+
+
+
+<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+
+
+ 生成doc
+
+<plugin>
+				<!--引入javadoc插件 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<author>bobo</author>
+					<doctitle>常用工具包</doctitle>
+					<show>package</show>
+					<!-- 禁用java 8 的DocLint新特性，以确保当javadoc有编译错误时，也能正常生成javadoc jar包 -->
+					<doclint>none</doclint>
+				</configuration>
+			</plugin>
 
 
 4.3 Maven插件
@@ -170,8 +223,6 @@ Clean生命周期一共包含了三个阶段：
 ----------------
 
 一般有企业的运维人员搭建
-
-
 
 ### 4.4.1 安装 nexus 
 
@@ -622,15 +673,3 @@ pom文件
 	</build>
 ```
 
-## 4.7 课堂小结
-
-1. 讲述了maven的生命周期
-2. 如何搭建maven的私服
-3. 如何发布组件到私服以及从私服获取组件
-4. jetty 和tomcat插件的使用
-
-## 4.8 课堂小结
-
-1. 搭建私服
-2. 构建一个jar项目发布到本地仓库
-3. 将上述项目发布到私服

@@ -1,18 +1,4 @@
-# 【授课重点】
-
-1.  注册用户的管理
-2.  文章管理
-
-# 【考核要求】
-
-1.  能够对注册用户进行有效管理
-2. 对系统内容进行有效的管理
-
-# 【教学内容】
-
-#  课程导入  
-
-  	cms 是用户提供者，系统内容受约束与法律道德框架下，尽管可以采用技术手段可以对一些内容进行过滤处理，自动审核等，但是某些状态下还是需要人工审核，本单元主要讲述如何针对系统外资源进行有效的管理。
+后台-用户管理/文章管理
 
 13.1 文章管理
 ========
@@ -192,29 +178,26 @@ function toDetail(id){
 >   上述代码中函数pass、hot 利用ajax技术异步请求实现。代码参考如下：
 >
 >    * * ```javascript
->       
->       ```
->
->      /**
->
+>        
+>        /**
+>        
 >        - 审核文章 
 >          - paramter： status 1 审核通过  2 审核不通过
 >          - return 
->           */
->           function pass(status){
->          	 	//提交审核请求
->          	 	$.post("/admin/checkArticle",{status:status,articleId:'${article.id}'},function(obj){
->          	 		if(obj.result==1){
->          	 			alert("处理成功")
->          	 			$("#content-wrapper").load("/admin/manArticle")
->          	 		}else{
->          	 			alert(obj.errorMsg);
->          	 		}
->          	 	})//end post
->       ```
->     
->       
->       ```
+>            */
+>            function pass(status){
+>            	//提交审核请求
+>            	$.post("/admin/checkArticle",{status:status,articleId:'${article.id}'},function(obj){
+>            		if(obj.result==1){
+>            			alert("处理成功")
+>            			$("#content-wrapper").load("/admin/manArticle")
+>            		}else{
+>            			alert(obj.errorMsg);
+>            		}
+>            	})//end post
+>        ```
+>
+>        
 >
 >
 >   ```javascript
@@ -225,15 +208,15 @@ function toDetail(id){
 >   - 设置文章是否热门 
 >   - paramter： status 0 非热门   1 热门
 >   - return 
->    */
->    function hot(status){
->    	//设置热门请求
->    	$.post("/admin/sethot",{status:status,articleId:'${article.id}'},function(obj){
->    		if(obj){
->    			alert("操作成功!")
->    			$("#content-wrapper").load("/admin/manArticle")
->    		}
->    	})//end post
+>     */
+>     function hot(status){
+>     	//设置热门请求
+>     	$.post("/admin/sethot",{status:status,articleId:'${article.id}'},function(obj){
+>     		if(obj){
+>     			alert("操作成功!")
+>     			$("#content-wrapper").load("/admin/manArticle")
+>     		}
+>     	})//end post
 >   
 >   }//end function
 >   
@@ -886,25 +869,3 @@ function toDetail(id){
 
 >   **int** updateLocked(\@Param("userId") Integer userId, \@Param("locked")
 >   Integer locked);
-
-
-
-## 13.3 课堂小结
-
-1. 文章列表
-
-2. 用户列表
-
-3. 用户的封禁与解禁
-
-4. 文章的审核、通过、设置热门等
-
-   
-
-## 13.4 课后作业
-
- 	1. 用户解禁与封禁
- 	2. 文章设置热门与热门撤销
-
-
-

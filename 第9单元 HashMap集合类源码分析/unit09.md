@@ -40,49 +40,49 @@
 
 hashMap = 数组 +链表 + 红黑树
 
-![1111](media/6313e48891ed71ea67b416edfc27e710.png) 
+![1111](media/6313e48891ed71ea67b416edfc27e710.png)
 
 ### 9.2.2  HashMap集合源码解析步骤
 
-![](media/bb90bc7d372540d47320328f1cc8c764.png) 
+![](media/bb90bc7d372540d47320328f1cc8c764.png)
 
 ### 类的属性
 
-![](media/538c4c8490c684397f70fa7e6cc8a51b.png) 
+![](media/538c4c8490c684397f70fa7e6cc8a51b.png)
 
 ### 9.2.3  类的构造方法
 
-![](media/3935c1456775778badcdebb3b0de7378.png) 
+![](media/3935c1456775778badcdebb3b0de7378.png)
 
 ### 9.2.3  核心函数-存储
 
-![](media/9aaeb15b2fa57cdc36f25afb85da569c.png) 
+![](media/9aaeb15b2fa57cdc36f25afb85da569c.png)
 
 ### 9.2.4 核心函数-putVal方法执行过程
 
-![](media/d74563a9d7e45467f942d4e02d95c925.png) 
+![](media/d74563a9d7e45467f942d4e02d95c925.png)
 
 
 
 ### 9.2.5 核心函数-存储思路
 
-![](media/655f9179919463b8321f6649925302f5.png) 
+![](media/655f9179919463b8321f6649925302f5.png)
 
 ### 9.2.6  核心函数-扩容机制
 
 resize前和resize后的元素布局如下
 
-![](media/1d042d8588280ee6d641e3c9ce203f8c.png) 
+![](media/1d042d8588280ee6d641e3c9ce203f8c.png)
 
 ### 9.2.7  核心函数-读取
 
-![](media/a3fc252858a4150f6dcdd49907da8dd2.png) 
+![](media/a3fc252858a4150f6dcdd49907da8dd2.png)
 
-![](media/02415dfe2aab87a1ebadc2d457e98201.png) 
+![](media/02415dfe2aab87a1ebadc2d457e98201.png)
 
 ### 9.2.8  小结
 
-![](media/cf8074fa77dfe8b637c759b3763d9b49.png) 
+![](media/cf8074fa77dfe8b637c759b3763d9b49.png)
 
 9.3 hashSet分析
 -----------
@@ -95,35 +95,28 @@ Object();
 
 ### 9.3.2 HashSet集合源码解析步骤
 
-![](media/9926064dcedc097d99ac61a73daf5d4e.png) 
+![](media/9926064dcedc097d99ac61a73daf5d4e.png)
 
 ### 9.3.3 类的属性
 
-![](media/a3a08fae2ecdc93f71184bdef759fb3b.png) 
+![](media/a3a08fae2ecdc93f71184bdef759fb3b.png)
 
 ### 9.3.4  类的构造方法
 
-![](media/1dca7e218357ad98290bc67c4924b24c.png) 
+![](media/1dca7e218357ad98290bc67c4924b24c.png)
 
 ### 9.3.5 核心函数-存储
 
-![](media/203bbfdc4ce6d543f6baefe40e673149.png) 
+![](media/203bbfdc4ce6d543f6baefe40e673149.png)
 
 ### 9.3.6 核心读取
 
-![](media/48d07e69bd9db24c9c9545eb012a47c5.png) 
+![](media/48d07e69bd9db24c9c9545eb012a47c5.png)
 
-### 9.3.7 核心函数-删除 
+### 9.3.7 核心函数-删除
 
-![](media/14d732af26524f3e1e4445dc52059ec6.png) 
+![](media/14d732af26524f3e1e4445dc52059ec6.png)
 
-## 9.4  课堂小结
+### 9.3.8  小结
 
-![](media/747e40b5e67be9ba4ecd79fc48abf983.png) 
-
-
-
-## 9.5 课后作业
-
-     	1. 背诵扩容机制
-     	2. 利用HashMap 实现一文章的单词统计
+![](media/747e40b5e67be9ba4ecd79fc48abf983.png)
