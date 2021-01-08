@@ -46,31 +46,31 @@
 
 一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点
 
-![](media/9fa7a7db90f73b9ebdb8f314d9d3ed3a.png) 
+![](media/9fa7a7db90f73b9ebdb8f314d9d3ed3a.png)
 
 每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长：
 
-![](media/73eef695df9417d5e15ee3ab066c50cd.png) 
+![](media/73eef695df9417d5e15ee3ab066c50cd.png)
 
 当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：
 
-![](media/2ae551886529408e471bfb916eb76f3b.png) 
+![](media/2ae551886529408e471bfb916eb76f3b.png)
 
 Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！
 
 不过，从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：
 
- ![](media/afeb26c504c6ce7f61d11f3ab1a30805.png)
+![](media/afeb26c504c6ce7f61d11f3ab1a30805.png)
 
 假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：
 
-![](media/1d33e7c510c3aae43c48f0b02693a909.png) 
+![](media/1d33e7c510c3aae43c48f0b02693a909.png)
 
 所以Git合并分支也很快！就改改指针，工作区内容也不变！
 
 合并完分支后，甚至可以删除dev分支。删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：
 
-![](media/16cb6a2bd4c088eb52b76ddb1b06e4fe.png) 
+![](media/16cb6a2bd4c088eb52b76ddb1b06e4fe.png)
 
 6.3 分支实战
 --------
@@ -93,7 +93,7 @@ git checkout命令加上-b参数表示创建并切换
 
 git branch
 
-![](media/ae1346679aa3f6b44c8b0dc0487f58f3.png) 
+![](media/ae1346679aa3f6b44c8b0dc0487f58f3.png)
 
 git
 branch命令会列出所有分支，当前分支前面会标一个\*号。然后，我们就可以在dev分支上正常提交，比如对readme.txt做个修改，加上一行：
@@ -116,7 +116,7 @@ Switched to branch 'master'
 
 切换回master分支后，再查看一个readme.txt文件，刚才添加的内容不见了！因为那个提交是在dev分支上，而master分支此刻的提交点并没有变：
 
-![](media/051705b5232900754efee5bb0a3f65b6.png) 
+![](media/051705b5232900754efee5bb0a3f65b6.png)
 
 ###  6.3.4 合并分支
 
@@ -124,7 +124,7 @@ Switched to branch 'master'
 
 git merge dev
 
-![](media/c4f99df69e49395a734b911a8ca76c43.png) 
+![](media/c4f99df69e49395a734b911a8ca76c43.png)
 
 git
 merge命令用于合并指定分支到当前分支。合并后，再查看readme.txt的内容，就可以看到，和dev分支的最新提交是完全一样的。注意到上面的Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。
@@ -194,26 +194,26 @@ git commit -m “主分支操作了”
 
 git merge fenzhi1
 
-![](media/7274807fbcdd0768db2bfc5aaf30f1b1.png) 
+![](media/7274807fbcdd0768db2bfc5aaf30f1b1.png)
 
 Git告诉我们，readme.txt文件存在冲突，必须手动解决冲突后再提交。git
 status也可以告诉我们冲突的文件
 
 git status
 
-![](media/e5550fe52f4cb2e0954ce75eee787925.png) 
+![](media/e5550fe52f4cb2e0954ce75eee787925.png)
 
 ### 6.4.2 解决冲突
 
 查看冲突的文件
 
-![](media/924ab756270807599d9b5658a51a0dff.png) 
+![](media/924ab756270807599d9b5658a51a0dff.png)
 
 Git用\<\<\<\<\<\<\<，=======，\>\>\>\>\>\>\>标记出不同分支的内容.
 
 我们改变文件如下:
 
-![](media/8b65d4595d95612250abc2eb43d9564a.png) 
+![](media/8b65d4595d95612250abc2eb43d9564a.png)
 
 这时再执行命令
 
@@ -235,7 +235,7 @@ Git commit -m “解决冲突”
 
 首先，切换到需要打标签的分支上
 
-![](media/7661f1d022ed02851f60ce2ecd8c3e69.png) 
+![](media/7661f1d022ed02851f60ce2ecd8c3e69.png)
 
 当前的分支是master
 
@@ -247,7 +247,7 @@ git tag v1.0
 
 git tag
 
-![](media/6edc63c37b5fb740b249cf9020093fb6.png) 
+![](media/6edc63c37b5fb740b249cf9020093fb6.png)
 
 ### 6.5.3 为历史提交打标签
 
@@ -257,7 +257,7 @@ git tag
 
 git log --pretty=oneline --abbrev-commit
 
-![](media/8add8a85f137abfc825cb59990546705.png) 
+![](media/8add8a85f137abfc825cb59990546705.png)
 
 比方说要对update这次提交打标签，它对应的commit id是ea10c51，敲入命令：
 
@@ -265,7 +265,7 @@ git log --pretty=oneline --abbrev-commit
 
 再查看标签
 
-![](media/4d2de7e1fb660da562ac5c33cdedff0b.png) 
+![](media/4d2de7e1fb660da562ac5c33cdedff0b.png)
 
 标签是按字母排序的,并不会按照打标签的顺序
 
@@ -275,23 +275,4 @@ Git show \<tagname\>
 
 例如
 
-![](media/1b64359547c6c92d39f9cd54dfd8a6ff.png) 
-
-
-
-## 6.6 课堂总结
-
-1. 如何解决代码冲突
-2. 如何忽略文件
-3. 如何管理tag标记
-4. 如何管理分支
-
-
-
-## 6.7 课后作业
-
-1. 创建一个Maven工程（命名gitpro1）并创建本地仓库，项目创建几个java类
-2. 将上述项目上传到github
-3. 从github 上将项目导入到eclipse 中并重新命名（命名gitpro2）
-4. gitpro1 和 gitpro2 同时修改相同的文件，并提交和push  ，出现冲突
-5. 解决上述中的冲突
+![](media/1b64359547c6c92d39f9cd54dfd8a6ff.png)

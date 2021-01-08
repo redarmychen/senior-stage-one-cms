@@ -308,21 +308,3 @@ public class AssertionsTest {
 >   ContextConfiguration
 
 >   加载配置文件，通过加载配置可以使用spring中的注解。
-
-
-
-## 18.8 课堂总结
-
-1. 掌握如何测试
-2. junit 如何与spring进行集成
-3. junit常用注解的使用
-4. 掌握断言
-
-## 18.9 课堂作业
-
- 	1. 集成spring-test
- 	2. 测试所有的service接口
- 	3. 测试工具类中的部分
-
-
-
